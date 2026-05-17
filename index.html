@@ -404,9 +404,9 @@ img { display: block; max-width: 100%; }
 .acc-map-stage { position: relative; padding: 0 0 80px; max-width: 1440px; margin: 0 auto; }
 .acc-map-svg { width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto; }
 .acc-map-svg text { font-family: 'Syne', sans-serif; }
-/* Island has faint initial presence — animation reveals it fully */
-#island-fill-el  { opacity: 0.10; }
-#map-island-name-jp, #map-island-name-en { opacity: 0.18; }
+/* Island initial presence — ghost outline always visible, fill and labels animate up */
+#island-fill-el  { opacity: 0.55; }
+#map-island-name-jp, #map-island-name-en { opacity: 0.42; }
 @media(max-width:768px){
   .acc-header-grid{ grid-template-columns:1fr; gap:32px; }
   .acc-map-header{ padding:60px 24px 32px; }
@@ -817,14 +817,19 @@ footer {
       </defs>
       <!-- Ocean background grid -->
       <rect width="720" height="460" fill="url(#ocean-grid)"/>
-      <!-- Island fill (appears after outline draws) -->
-      <path id="island-fill-el" opacity="0"
+      <!-- Island fill — always visible at moderate opacity, enhanced by animation -->
+      <path id="island-fill-el"
             d="M 370,48 C 418,38 465,66 478,112 C 494,164 478,214 455,256 C 432,300 398,330 364,348 C 330,366 294,366 268,344 C 238,318 232,278 234,248 C 236,214 248,184 260,158 C 274,130 284,106 302,84 C 320,60 336,55 370,48 Z"
-            fill="rgba(139,115,85,0.22)"/>
-      <!-- Island outline — animated stroke -->
+            fill="rgba(201,168,76,0.32)"/>
+      <!-- Ghost dotted outline — always visible, signals "map here" before animation -->
+      <path id="island-ghost"
+            d="M 370,48 C 418,38 465,66 478,112 C 494,164 478,214 455,256 C 432,300 398,330 364,348 C 330,366 294,366 268,344 C 238,318 232,278 234,248 C 236,214 248,184 260,158 C 274,130 284,106 302,84 C 320,60 336,55 370,48 Z"
+            fill="none" stroke="rgba(201,168,76,0.28)" stroke-width="0.8"
+            stroke-dasharray="5,8"/>
+      <!-- Island outline — animated solid stroke draws over ghost -->
       <path id="island-outline"
             d="M 370,48 C 418,38 465,66 478,112 C 494,164 478,214 455,256 C 432,300 398,330 364,348 C 330,366 294,366 268,344 C 238,318 232,278 234,248 C 236,214 248,184 260,158 C 274,130 284,106 302,84 C 320,60 336,55 370,48 Z"
-            stroke="rgba(201,168,76,0.75)" stroke-width="1.6"
+            stroke="rgba(201,168,76,0.85)" stroke-width="1.6"
             stroke-dasharray="1300" stroke-dashoffset="1300"/>
       <!-- Interior topographic hatch lines -->
       <path d="M 298,138 Q 370,128 448,140" stroke="rgba(201,168,76,0.1)" stroke-width="0.7" stroke-dasharray="3,5"/>
@@ -1069,8 +1074,8 @@ ScrollTrigger.create({
   trigger: '#access', start: 'top 72%', once: true,
   onEnter: () => {
     const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
-    // Island fill fades from faint → full (starts at 0.10 via CSS)
-    tl.to('#island-fill-el', { opacity: 0.28, duration: 0.5 })
+    // Island fill deepens (starts at 0.55 via CSS → enhances to 0.85)
+    tl.to('#island-fill-el', { opacity: 0.85, duration: 0.8 })
     // Island outline draws (stroke-dashoffset 1300 → 0)
       .to('#island-outline', { strokeDashoffset: 0, duration: 2.2, ease: 'power2.inOut' }, '-=0.2')
     // Ferry route draws
@@ -1088,8 +1093,8 @@ ScrollTrigger.create({
     // Kerama Channel dive spot
       .to(['#ds-kerama-line', '#ds-kerama'], { opacity: 1, duration: 0.5 }, '-=0.1')
       .to(['#ds-kerama-label', '#ds-kerama-depth'], { opacity: 1, duration: 0.4, stagger: 0.1 }, '-=0.1')
-    // Island name marginalia (starts at 0.18 via CSS → settles at 0.45)
-      .to(['#map-island-name-jp', '#map-island-name-en'], { opacity: 0.45, duration: 0.5, stagger: 0.15 }, '-=0.2');
+    // Island name marginalia (starts at 0.42 via CSS → settles at 0.65)
+      .to(['#map-island-name-jp', '#map-island-name-en'], { opacity: 0.65, duration: 0.5, stagger: 0.15 }, '-=0.2');
   }
 });
 
