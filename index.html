@@ -173,7 +173,7 @@ img { display: block; max-width: 100%; }
   color: var(--paper); line-height: 1.12; letter-spacing: .04em;
   margin-bottom: 16px;
 }
-.hero-title .char { display: inline-block; opacity: 0; transform: translateY(28px); }
+.hero-title .char { display: inline-block; opacity: 0; transform: translateY(28px); filter: blur(6px); }
 .hero-title .br { display: block; }
 .hero-en {
   font-family: var(--font-en); font-size: clamp(.85rem, 1.4vw, 1.1rem);
@@ -248,6 +248,64 @@ img { display: block; max-width: 100%; }
   transform: translateX(-8px); opacity: 0;
 }
 @media(max-width:768px){ .div-inner{ grid-template-columns:1fr; gap:48px; } .div-inner>*:first-child{ order:2; } }
+
+/* ── §3.5 DIVE GALLERY (horizontal scroll) ────────────── */
+#gallery {
+  height: 100vh; overflow: hidden; position: relative;
+  background: var(--water-deep);
+}
+.gallery-header {
+  position: absolute; top: 48px; left: 56px; z-index: 10;
+  color: var(--paper);
+}
+.gallery-header .sec-en { color: var(--water-surface); margin-bottom: 6px; }
+.gallery-header h2 {
+  font-family: var(--font-jp); font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 500;
+}
+.gallery-scroll-hint {
+  position: absolute; bottom: 48px; right: 56px; z-index: 10;
+  font-family: var(--font-en); font-size: 9px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--water-surface); opacity: .6;
+  display: flex; align-items: center; gap: 10px;
+}
+.gallery-scroll-hint::before {
+  content: ''; display: block; width: 40px; height: 1px;
+  background: var(--water-surface); opacity: .6;
+}
+.gallery-track {
+  display: flex; align-items: center; height: 100%;
+  will-change: transform;
+}
+.gallery-item {
+  flex-shrink: 0; width: 80vw; height: 70vh; max-width: 1100px;
+  margin: 0 24px; position: relative; overflow: hidden;
+}
+.gallery-item:first-child { margin-left: 80px; }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .6s ease;
+}
+.gallery-item:hover img { transform: scale(1.03); }
+.gallery-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 32px 36px;
+  background: linear-gradient(to top, rgba(11,50,89,.85) 0%, transparent 100%);
+  color: var(--paper);
+}
+.gallery-caption-jp {
+  font-family: var(--font-jp); font-size: 1.05rem; font-weight: 500;
+  margin-bottom: 4px;
+}
+.gallery-caption-en {
+  font-family: var(--font-en); font-size: 11px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--water-surface); opacity: .8;
+}
+.gallery-num {
+  position: absolute; top: 28px; right: 28px;
+  font-family: var(--font-en); font-size: 2.5rem; font-weight: 700;
+  color: rgba(242,237,232,.08); line-height: 1;
+}
 
 /* ── §4 STAY ──────────────────────────────────────────── */
 #lodging { background: var(--paper); padding: 120px 0; }
@@ -484,9 +542,9 @@ footer {
       <span class="brand-spine">Kerama Blue</span>
       <div class="brand-text">
         <div class="brand-rule" id="brand-rule"></div>
-        <h2 class="brand-headline will-reveal">慶良間ブルーとは、<br>ここだけに存在する青。</h2>
-        <p class="brand-body will-reveal">透明度30メートル以上。慶良間諸島の海は、「慶良間ブルー」という固有の名前を与えられるほど、どこにもない深さと輝きを持っています。</p>
-        <p class="brand-body-en will-reveal">Kerama Blue is not a brand — it is what the sea genuinely looks like here. Clarity beyond 30 metres. Coral reefs of extraordinary richness. Tokashiki Island is the island you reach only if you decide to.</p>
+        <h2 class="brand-headline will-reveal">「慶良間ブルー」は、<br>名前じゃない。事実だ。</h2>
+        <p class="brand-body will-reveal">透明度30メートル以上の海に、研究者たちが固有の名前をつけた。それだけの青が、ここにある。世界の多くのダイバーはまだ、渡嘉敷島の名前を知らない。</p>
+        <p class="brand-body-en will-reveal">"Kerama Blue" isn't branding — it's what marine researchers named the sea here because they had no other word for it. Most international divers still haven't found Tokashiki. That's changing.</p>
       </div>
     </div>
   </div>
@@ -526,6 +584,41 @@ footer {
   </div>
 </section>
 
+<!-- §3.5 DIVE GALLERY — horizontal scroll WOW -->
+<section id="gallery">
+  <div class="gallery-header">
+    <p class="sec-en">The Dives</p>
+    <h2>慶良間で潜るとは、<br>こういうことだ。</h2>
+  </div>
+  <div class="gallery-track" id="gallery-track">
+    <div class="gallery-item">
+      <img src="./assets/diving-v1.png" alt="Diver at Kerama coral wall">
+      <div class="gallery-caption">
+        <div class="gallery-caption-jp">珊瑚の壁</div>
+        <div class="gallery-caption-en">The Diver's Wall · Kerama Channel</div>
+      </div>
+      <span class="gallery-num">01</span>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/step1-hero-v1.png" alt="God rays at 15m depth">
+      <div class="gallery-caption">
+        <div class="gallery-caption-jp">光の柱、水深15メートル</div>
+        <div class="gallery-caption-en">God Rays · 15 Metres · Kerama Blue</div>
+      </div>
+      <span class="gallery-num">02</span>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/aerial-v1.png" alt="Tokashiki Island from above">
+      <div class="gallery-caption">
+        <div class="gallery-caption-jp">浮上した先に、島がある。</div>
+        <div class="gallery-caption-en">Surface · Tokashiki Island · Aharen Beach</div>
+      </div>
+      <span class="gallery-num">03</span>
+    </div>
+  </div>
+  <div class="gallery-scroll-hint">Scroll to explore</div>
+</section>
+
 <!-- §4 STAY -->
 <section id="lodging">
   <div class="wrap">
@@ -552,7 +645,7 @@ footer {
           <span class="t br" id="lt-br"></span>
         </div>
         <div class="lod-overlap tape-photo" id="lod-overlap">
-          <img src="./assets/step1-hero-v1.png" alt="Kerama Blue from the shore" style="filter:saturate(1.3) brightness(0.88)">
+          <img src="./assets/aerial-v1.png" alt="Tokashiki Island aerial view" onerror="this.src='./assets/step1-hero-v1.png'">
           <span class="t tl" id="lt2-tl"></span>
           <span class="t tr" id="lt2-tr"></span>
           <span class="t bl" id="lt2-bl"></span>
@@ -747,8 +840,9 @@ window.addEventListener('load', () => {
   anime({
     targets: '.hero-title .char',
     opacity: [0, 1], translateY: [28, 0],
+    filter: ['blur(6px)', 'blur(0px)'],
     delay: anime.stagger(60, { start: 400 }),
-    duration: 700, easing: 'easeOutQuart'
+    duration: 800, easing: 'easeOutQuart'
   });
   // EN line
   anime({ targets: '.hero-en', opacity: [0,.7], translateY: [16,0], duration: 700, delay: 950, easing: 'easeOutQuad' });
@@ -918,7 +1012,43 @@ document.querySelectorAll('.lod-type').forEach(el => {
   el.addEventListener('mouseleave', () => anime({ targets: el, borderColor: 'rgba(30,107,158,0.25)', backgroundColor: 'rgba(0,0,0,0)', duration: 200, easing: 'easeInQuad' }));
 });
 
-// CTA magnetic
+// ── MOTION 2: Horizontal dive gallery (architectural WOW) ──
+const galleryTrack = document.getElementById('gallery-track');
+if (galleryTrack) {
+  const items = galleryTrack.querySelectorAll('.gallery-item');
+  // Total width to scroll = sum of items minus viewport
+  const totalMove = Array.from(items).reduce((acc, el) => {
+    return acc + el.offsetWidth + parseInt(getComputedStyle(el).marginLeft) + parseInt(getComputedStyle(el).marginRight);
+  }, 0) - window.innerWidth + 160;
+
+  const galleryST = gsap.to(galleryTrack, {
+    x: -totalMove,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#gallery',
+      pin: true,
+      start: 'top top',
+      end: () => '+=' + (totalMove + window.innerWidth * 0.5),
+      scrub: 1.2,
+      invalidateOnRefresh: true
+    }
+  });
+
+  // Captions: stagger in as each item reaches center via containerAnimation
+  items.forEach(item => {
+    gsap.from(item.querySelector('.gallery-caption'), {
+      opacity: 0, y: 20, duration: 0.6, ease: 'power2.out',
+      scrollTrigger: {
+        trigger: item,
+        containerAnimation: galleryST.scrollTrigger,
+        start: 'left 75%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  });
+}
+
+// ── CTA magnetic
 const cta = document.querySelector('.contact-cta');
 if (cta) {
   cta.addEventListener('mousemove', e => {
