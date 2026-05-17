@@ -111,6 +111,7 @@ img { display: block; max-width: 100%; }
 }
 .dg-mark.active { opacity: 1; color: var(--godray); }
 @media(max-width:768px){ #depth-gauge{ display:none; } }
+@media(max-width:768px){ .hero-content{ padding: 0 24px; } }
 
 /* ── NAV ──────────────────────────────────────────────── */
 #nav {
@@ -282,6 +283,7 @@ img { display: block; max-width: 100%; }
   margin: 0 24px; position: relative; overflow: hidden;
 }
 .gallery-item:first-child { margin-left: 80px; }
+@media(max-width:768px){ .gallery-item:first-child{ margin-left: 24px; } .gallery-header{ left: 24px; } .gallery-scroll-hint{ right: 24px; bottom: 32px; } }
 .gallery-item img {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform .6s ease;
@@ -402,6 +404,9 @@ img { display: block; max-width: 100%; }
 .acc-map-stage { position: relative; padding: 0 0 80px; max-width: 1440px; margin: 0 auto; }
 .acc-map-svg { width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto; }
 .acc-map-svg text { font-family: 'Syne', sans-serif; }
+/* Island has faint initial presence — animation reveals it fully */
+#island-fill-el  { opacity: 0.10; }
+#map-island-name-jp, #map-island-name-en { opacity: 0.18; }
 @media(max-width:768px){
   .acc-header-grid{ grid-template-columns:1fr; gap:32px; }
   .acc-map-header{ padding:60px 24px 32px; }
@@ -1064,8 +1069,8 @@ ScrollTrigger.create({
   trigger: '#access', start: 'top 72%', once: true,
   onEnter: () => {
     const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
-    // Island fill fades in first
-    tl.to('#island-fill-el', { opacity: 1, duration: 0.4 })
+    // Island fill fades from faint → full (starts at 0.10 via CSS)
+    tl.to('#island-fill-el', { opacity: 0.28, duration: 0.5 })
     // Island outline draws (stroke-dashoffset 1300 → 0)
       .to('#island-outline', { strokeDashoffset: 0, duration: 2.2, ease: 'power2.inOut' }, '-=0.2')
     // Ferry route draws
@@ -1083,8 +1088,8 @@ ScrollTrigger.create({
     // Kerama Channel dive spot
       .to(['#ds-kerama-line', '#ds-kerama'], { opacity: 1, duration: 0.5 }, '-=0.1')
       .to(['#ds-kerama-label', '#ds-kerama-depth'], { opacity: 1, duration: 0.4, stagger: 0.1 }, '-=0.1')
-    // Island name marginalia
-      .to(['#map-island-name-jp', '#map-island-name-en'], { opacity: 1, duration: 0.5, stagger: 0.15 }, '-=0.2');
+    // Island name marginalia (starts at 0.18 via CSS → settles at 0.45)
+      .to(['#map-island-name-jp', '#map-island-name-en'], { opacity: 0.45, duration: 0.5, stagger: 0.15 }, '-=0.2');
   }
 });
 
