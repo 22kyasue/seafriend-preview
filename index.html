@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SeaFriend シーフレンド — 慶良間ブルーの世界へ</title>
-<meta name="description" content="渡嘉敷島の総合マリンサービス。PADI5スター認定。ダイビング、宿泊、レストラン、レンタカー。">
+<meta name="description" content="渡嘉敷島のダイビング・宿泊・レストラン。PADI5スター認定。慶良間ブルーへ、いらっしゃい。">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* ─── Palette Tokens ─────────────────────────────────── */
+/* ── Palette ──────────────────────────────────────────── */
 :root {
   --ink:           #0E2A3F;
   --paper:         #F2EDE8;
@@ -27,1243 +27,909 @@
   --font-en: 'Syne', sans-serif;
 }
 
-/* ─── Reset ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: auto; } /* Lenis handles this */
+html { overflow-x: hidden; }
 body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-jp);
-  font-size: 16px;
   line-height: 1.8;
   overflow-x: hidden;
 }
 img { display: block; max-width: 100%; }
 
-/* ─── Typography ─────────────────────────────────────── */
-.t-wordmark {
-  font-family: var(--font-jp);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  line-height: 1.1;
-}
-.t-section-head {
-  font-family: var(--font-jp);
-  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-}
-.t-section-head-en {
+/* ── Type ─────────────────────────────────────────────── */
+.en { font-family: var(--font-en); }
+.cap {
   font-family: var(--font-en);
-  font-size: clamp(0.95rem, 1.5vw, 1.2rem);
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: 10px;
+  letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--water-surface);
-  margin-bottom: 0.75rem;
 }
-.t-body { font-size: 15px; line-height: 1.85; font-weight: 400; }
-.t-body-en {
+.stat-num {
   font-family: var(--font-en);
-  font-size: 14px;
-  line-height: 1.75;
-  font-weight: 400;
-  color: var(--ink);
-  opacity: 0.75;
-}
-.t-data-stat {
-  font-family: var(--font-en);
-  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 700;
   color: var(--godray);
   line-height: 1;
 }
-.t-data-label {
+.stat-label {
   font-family: var(--font-jp);
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: .1em;
   color: var(--water-mid);
-  margin-top: 4px;
-}
-.t-caption {
-  font-family: var(--font-en);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--water-surface);
-}
-.t-marginalia {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--ink);
-  opacity: 0.45;
-  line-height: 1.6;
-}
-.t-vertical {
-  writing-mode: vertical-rl;
-  font-family: var(--font-jp);
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  color: var(--ink);
-  opacity: 0.55;
+  margin-top: 6px;
 }
 
-/* ─── Hanko Stamp ─────────────────────────────────────── */
-.hanko {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 2.5px solid var(--coral-warm);
-  color: var(--coral-warm);
-  font-family: var(--font-jp);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-align: center;
-  line-height: 1.3;
-  transform-origin: center;
-}
-.hanko-large {
-  width: 96px;
-  height: 96px;
-  font-size: 13px;
-  border-width: 3px;
-}
+/* ── Layout ───────────────────────────────────────────── */
+.wrap { max-width: 1440px; margin: 0 auto; padding: 0 56px; }
+@media(max-width:768px){ .wrap{ padding: 0 24px; } }
 
-/* ─── Tape-corner Photos ──────────────────────────────── */
-.tape-photo {
-  position: relative;
-  display: inline-block;
-}
+/* ── Tape corners ─────────────────────────────────────── */
+.tape-photo { position: relative; display: inline-block; }
 .tape-photo img { display: block; }
-.tape {
-  position: absolute;
-  width: 1.2rem;
-  height: 0.35rem;
-  background: var(--godray);
-  opacity: 0.78;
-  border-radius: 1px;
-}
-.tape.tc-tl { top: -4px; left: 8px; transform: rotate(-35deg); }
-.tape.tc-tr { top: -4px; right: 8px; transform: rotate(35deg); }
-.tape.tc-bl { bottom: -4px; left: 8px; transform: rotate(35deg); }
-.tape.tc-br { bottom: -4px; right: 8px; transform: rotate(-35deg); }
+.t { position: absolute; width: 1.1rem; height: .3rem; background: var(--godray); opacity: .75; border-radius: 1px; }
+.t.tl { top: -3px; left: 6px; transform: rotate(-33deg); }
+.t.tr { top: -3px; right: 6px; transform: rotate(33deg); }
+.t.bl { bottom: -3px; left: 6px; transform: rotate(33deg); }
+.t.br { bottom: -3px; right: 6px; transform: rotate(-33deg); }
 
-/* ─── Washi Texture Overlay ───────────────────────────── */
-.washi-surface {
-  position: relative;
-}
-.washi-surface::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.04;
-  pointer-events: none;
-  mix-blend-mode: multiply;
+/* ── Hanko ────────────────────────────────────────────── */
+.hanko {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 62px; height: 62px; border-radius: 50%;
+  border: 2.5px solid var(--coral-warm); color: var(--coral-warm);
+  font-family: var(--font-jp); font-size: 9.5px; font-weight: 700;
+  letter-spacing: .04em; text-align: center; line-height: 1.35;
 }
 
-/* ─── Layout ──────────────────────────────────────────── */
-.container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 48px;
+/* ── Scroll depth indicator ───────────────────────────── */
+#depth-gauge {
+  position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
+  z-index: 90; display: flex; flex-direction: column; align-items: center;
+  gap: 0; opacity: 0; transition: opacity .6s;
 }
-@media (max-width: 768px) { .container { padding: 0 24px; } }
-
-section { position: relative; }
-
-/* ─── NAV ─────────────────────────────────────────────── */
-#nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 20px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background 0.4s, backdrop-filter 0.4s;
+#depth-gauge.visible { opacity: 1; }
+.dg-track {
+  width: 1px; height: 120px;
+  background: linear-gradient(to bottom, rgba(91,184,212,.15), rgba(91,184,212,.6));
+  position: relative; margin: 6px 0;
 }
-#nav.scrolled {
-  background: rgba(11, 50, 89, 0.88);
-  backdrop-filter: blur(12px);
+.dg-fill {
+  position: absolute; top: 0; left: 0; width: 100%;
+  background: var(--water-surface); transition: height .1s linear;
 }
-.nav-logo {
-  font-family: var(--font-jp);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--paper);
-  text-decoration: none;
-  letter-spacing: 0.08em;
-}
-.nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-}
-.nav-links a {
-  font-family: var(--font-en);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+.dg-label {
+  font-family: var(--font-en); font-size: 8px; letter-spacing: .18em;
+  color: var(--water-surface); opacity: .55; writing-mode: vertical-rl;
   text-transform: uppercase;
-  color: var(--paper);
-  text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.2s;
 }
-.nav-links a:hover { opacity: 1; }
-.nav-lang {
-  font-family: var(--font-en);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--water-surface);
-  cursor: pointer;
-  border: 1px solid var(--water-surface);
-  padding: 4px 10px;
+.dg-mark {
+  font-family: var(--font-en); font-size: 7.5px; color: var(--water-surface);
+  opacity: .4; letter-spacing: .08em; position: absolute; left: 6px;
+  white-space: nowrap;
 }
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  #nav { padding: 16px 24px; }
-}
+.dg-mark.active { opacity: 1; color: var(--godray); }
+@media(max-width:768px){ #depth-gauge{ display:none; } }
 
-/* ─── SECTION 1: HERO ─────────────────────────────────── */
+/* ── NAV ──────────────────────────────────────────────── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 56px; display: flex; align-items: center;
+  justify-content: space-between; transition: background .5s, backdrop-filter .5s;
+}
+#nav.scrolled { background: rgba(11,50,89,.92); backdrop-filter: blur(14px); }
+.nav-logo { font-family: var(--font-jp); font-size: 1.05rem; font-weight: 700; color: var(--paper); text-decoration: none; letter-spacing: .1em; }
+.nav-list { display: flex; gap: 28px; list-style: none; }
+.nav-list a { font-family: var(--font-en); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--paper); text-decoration: none; opacity: .75; transition: opacity .2s, letter-spacing .25s; }
+.nav-list a:hover { opacity: 1; letter-spacing: .22em; }
+@media(max-width:768px){ .nav-list{ display:none; } #nav{ padding: 16px 24px; } }
+
+/* ── §1 HERO ──────────────────────────────────────────── */
 #hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 80px;
+  position: relative; width: 100%; height: 100vh; min-height: 620px;
+  overflow: hidden; display: flex; align-items: flex-end; padding-bottom: 80px;
+  background: var(--water-deep);
 }
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+.hero-media { position: absolute; inset: 0; z-index: 0; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s; }
+.hero-media video.loaded { opacity: 1; }
+.hero-grad {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to bottom, transparent 30%, rgba(11,50,89,.65) 100%),
+    radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(11,50,89,.4) 100%);
 }
-.hero-bg video,
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
-}
-.hero-bg img.hero-fallback { display: block; }
-.hero-bg video { position: absolute; inset: 0; }
-
-/* God-ray ambient animation (CSS fallback) */
-.hero-godray {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(201, 168, 76, 0.06) 0%,
-    transparent 40%,
-    transparent 70%,
-    rgba(11, 50, 89, 0.45) 100%
+/* Animated god-ray overlay */
+.hero-rays {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: repeating-linear-gradient(
+    105deg,
+    rgba(201,168,76,.03) 0px,
+    transparent 40px,
+    rgba(201,168,76,.02) 80px,
+    transparent 120px
   );
-  animation: godray-pulse 6s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: 1;
+  animation: ray-drift 8s ease-in-out infinite alternate;
 }
-@keyframes godray-pulse {
-  0%  { opacity: 0.6; transform: translateX(-8px) scale(1.01); }
-  50% { opacity: 0.9; }
-  100%{ opacity: 0.6; transform: translateX(8px) scale(1); }
-}
-.hero-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(11,50,89,0.5) 100%);
-  z-index: 1;
-  pointer-events: none;
+@keyframes ray-drift {
+  0%  { transform: translateX(-16px) skewX(-2deg); opacity: .5; }
+  100%{ transform: translateX(16px)  skewX(2deg);  opacity: .9; }
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 0 64px;
-  max-width: 800px;
+  position: relative; z-index: 2; padding: 0 64px; max-width: 860px;
 }
-.hero-eyebrow {
-  font-family: var(--font-en);
-  font-size: 10px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--water-surface);
+.hero-location {
+  font-family: var(--font-en); font-size: 9.5px; letter-spacing: .35em;
+  text-transform: uppercase; color: var(--water-surface); margin-bottom: 20px;
+  opacity: 0;
+}
+/* Title split into chars — Anime.js stagger */
+.hero-title {
+  font-family: var(--font-jp); font-weight: 700;
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  color: var(--paper); line-height: 1.12; letter-spacing: .04em;
   margin-bottom: 16px;
-  opacity: 0;
-  transform: translateY(20px);
 }
-.hero-tagline-jp {
-  font-family: var(--font-jp);
-  font-size: clamp(2rem, 4.5vw, 4rem);
-  font-weight: 700;
-  color: var(--paper);
-  line-height: 1.15;
-  letter-spacing: 0.04em;
-  margin-bottom: 12px;
-  opacity: 0;
-  transform: translateY(30px);
+.hero-title .char { display: inline-block; opacity: 0; transform: translateY(28px); }
+.hero-title .br { display: block; }
+.hero-en {
+  font-family: var(--font-en); font-size: clamp(.85rem, 1.4vw, 1.1rem);
+  color: rgba(242,237,232,.7); letter-spacing: .06em; opacity: 0;
 }
-.hero-tagline-en {
-  font-family: var(--font-en);
-  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
-  font-weight: 400;
-  color: var(--paper);
-  opacity: 0;
-  transform: translateY(20px);
-  letter-spacing: 0.06em;
-}
-.hero-scroll-hint {
-  position: absolute;
-  bottom: 28px;
-  right: 64px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-}
-.hero-scroll-hint span {
-  font-family: var(--font-en);
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--paper);
-  opacity: 0.6;
-}
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--water-surface), transparent);
-  animation: scroll-pulse 1.8s ease-in-out infinite;
-}
-@keyframes scroll-pulse {
-  0%, 100% { transform: scaleY(1); opacity: 0.5; }
-  50% { transform: scaleY(0.6); opacity: 1; }
-}
-.hero-hanko {
-  position: absolute;
-  bottom: 72px;
-  right: 64px;
-  z-index: 2;
-  opacity: 0;
-  transform: scale(0.8) rotate(-8deg);
-}
+.hero-hanko-pos { position: absolute; bottom: 76px; left: 64px; z-index: 2; opacity: 0; }
+.hero-scroll { position: absolute; bottom: 28px; right: 64px; z-index: 2; opacity: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.hero-scroll span { font-family: var(--font-en); font-size: 8.5px; letter-spacing: .22em; text-transform: uppercase; color: rgba(242,237,232,.5); }
+.scroll-stem { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--water-surface), transparent); animation: stem 1.8s ease-in-out infinite; }
+@keyframes stem { 0%,100%{ transform: scaleY(1); opacity: .4; } 50%{ transform: scaleY(.6); opacity:1; } }
 
-/* ─── SECTION 2: KERAMA BLUE INTRO ───────────────────── */
-#kerama-blue {
-  background: var(--water-deep);
-  padding: 120px 0;
-  overflow: hidden;
+/* ── §2 BRAND IDENTITY (scroll-to-underwater) ─────────── */
+#brand {
+  padding: 140px 0; background: var(--paper); position: relative; overflow: hidden;
 }
-.kb-inner {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  align-items: center;
+.brand-inner {
+  display: grid; grid-template-columns: auto 1fr; gap: 80px; align-items: center;
 }
-.kb-label {
-  color: var(--water-surface);
-  opacity: 0.6;
+.brand-spine {
+  writing-mode: vertical-rl; font-family: var(--font-en); font-size: 10px;
+  letter-spacing: .28em; text-transform: uppercase; color: var(--water-surface);
+  opacity: .5;
 }
-.kb-text-block { }
-.kb-headline {
-  font-family: var(--font-jp);
-  font-size: clamp(1.6rem, 3vw, 2.8rem);
-  font-weight: 500;
-  color: var(--paper);
-  line-height: 1.4;
-  margin-bottom: 24px;
+.brand-text { max-width: 680px; }
+.brand-rule { width: 0; height: 1px; background: var(--water-mid); margin-bottom: 36px; }
+.brand-headline {
+  font-family: var(--font-jp); font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 500; line-height: 1.4; margin-bottom: 28px;
 }
-.kb-line {
-  width: 0;
-  height: 1px;
-  background: var(--water-mid);
-  margin-bottom: 32px;
+.brand-body { font-size: 15px; line-height: 1.9; margin-bottom: 14px; }
+.brand-body-en { font-family: var(--font-en); font-size: 13.5px; line-height: 1.75; color: rgba(14,42,63,.65); }
+/* Animated water-world overlay that grows on scroll */
+.brand-water-reveal {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 0;
+  background: linear-gradient(to top, var(--water-deep), transparent);
+  pointer-events: none; z-index: 0;
 }
-.kb-body { color: rgba(242,237,232,0.82); font-size: 15px; margin-bottom: 16px; }
-.kb-body-en { color: rgba(242,237,232,0.55); font-size: 13px; font-family: var(--font-en); line-height: 1.75; }
-@media (max-width: 768px) {
-  .kb-inner { grid-template-columns: 1fr; gap: 40px; }
-}
+@media(max-width:768px){ .brand-inner{ grid-template-columns: 1fr; gap: 32px; } .brand-spine{ writing-mode: horizontal-tb; margin-bottom: 0; } }
 
-/* ─── SECTION 3: DIVING ───────────────────────────────── */
+/* ── §3 DIVING ────────────────────────────────────────── */
 #diving {
-  background: var(--paper);
-  padding: 120px 0;
+  background: var(--water-deep); padding: 120px 0; overflow: hidden; position: relative;
 }
 .div-inner {
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 80px;
-  align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
 }
-.div-text { padding-top: 40px; }
-.div-annotation {
-  margin-top: 40px;
-  padding-left: 20px;
-  border-left: 2px solid var(--water-mid);
+.div-img-wrap { position: relative; }
+.div-img { width: 100%; height: 520px; object-fit: cover; display: block; }
+/* SVG annotation overlay */
+.div-annotations {
+  position: absolute; inset: 0; pointer-events: none; overflow: visible;
 }
-.div-photo-wrap {
-  position: relative;
+.ann-path {
+  fill: none; stroke: var(--godray); stroke-width: 1; opacity: .7;
+  stroke-dasharray: 300; stroke-dashoffset: 300;
 }
-.div-photo-inner {
-  transform: rotate(1.5deg);
-}
-.div-photo-inner img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-}
-.div-stat-pair {
-  display: flex;
-  gap: 48px;
-  margin-top: 48px;
-}
-.div-stat {}
-@media (max-width: 768px) {
-  .div-inner { grid-template-columns: 1fr; gap: 48px; }
-  .div-inner > *:first-child { order: 2; }
-}
-
-/* ─── SECTION 4: STAY / LODGING — WOW MOMENT ─────────── */
-#lodging {
-  background: var(--water-deep);
-  padding: 120px 0;
-  overflow: hidden;
-}
-.lodging-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-.lodging-text { padding-top: 32px; color: var(--paper); }
-.lodging-text .t-section-head { color: var(--paper); }
-.lodging-body { color: rgba(242,237,232,0.8); margin: 24px 0; font-size: 15px; }
-.lodging-body-en { color: rgba(242,237,232,0.5); font-size: 13px; font-family: var(--font-en); margin-bottom: 32px; }
-.lodging-types {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 24px;
-}
-.lodging-type-pill {
-  font-family: var(--font-jp);
-  font-size: 12px;
-  padding: 8px 16px;
-  border: 1px solid rgba(91,184,212,0.4);
-  color: var(--water-surface);
-  letter-spacing: 0.08em;
-  text-align: center;
-}
-.lodging-photos {
-  position: relative;
-  height: 520px;
-}
-/* Stacked tape-corner photos for WOW moment */
-.lodging-photo-stack {
-  position: absolute;
-  inset: 0;
-}
-.lp-photo {
-  position: absolute;
+.ann-label {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 10px; fill: var(--godray);
   opacity: 0;
 }
-.lp-1 { top: 0; left: 0; width: 65%; }
-.lp-1 .tape-photo { transform: rotate(-2deg); }
-.lp-1 .tape-photo img { height: 280px; object-fit: cover; width: 100%; }
-.lp-2 { bottom: 0; right: 0; width: 55%; }
-.lp-2 .tape-photo { transform: rotate(3deg); }
-.lp-2 .tape-photo img { height: 240px; object-fit: cover; width: 100%; }
-.lp-3 { top: 40%; right: 5%; width: 42%; }
-.lp-3 .tape-photo { transform: rotate(-1.5deg); }
-.lp-3 .tape-photo img { height: 200px; object-fit: cover; width: 100%; }
-
-@media (max-width: 768px) {
-  .lodging-inner { grid-template-columns: 1fr; }
-  .lodging-photos { height: 320px; }
+.div-text { color: var(--paper); }
+.div-text .sec-en { color: var(--water-surface); }
+.div-head { font-family: var(--font-jp); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.3; margin: 12px 0 24px; }
+.div-body { font-size: 15px; line-height: 1.9; color: rgba(242,237,232,.82); margin-bottom: 14px; }
+.div-body-en { font-family: var(--font-en); font-size: 13px; color: rgba(242,237,232,.5); }
+.div-stats { display: flex; gap: 48px; margin-top: 48px; }
+.div-types { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; }
+.div-type {
+  font-family: var(--font-jp); font-size: 13px; padding: 10px 16px;
+  border-left: 2px solid var(--water-mid); color: rgba(242,237,232,.75);
+  background: rgba(30,107,158,.1); letter-spacing: .06em;
+  transform: translateX(-8px); opacity: 0;
 }
+@media(max-width:768px){ .div-inner{ grid-template-columns:1fr; gap:48px; } .div-inner>*:first-child{ order:2; } }
 
-/* ─── SECTION 5: RESTAURANT ───────────────────────────── */
-#restaurant {
-  background: var(--paper);
-  padding: 0;
-  overflow: hidden;
+/* ── §4 STAY ──────────────────────────────────────────── */
+#lodging { background: var(--paper); padding: 120px 0; }
+.lod-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
 }
+.lod-text { padding-top: 20px; }
+.lod-head { font-family: var(--font-jp); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.3; margin: 12px 0 24px; }
+.lod-body { font-size: 15px; line-height: 1.9; margin-bottom: 14px; }
+.lod-body-en { font-family: var(--font-en); font-size: 13px; color: rgba(14,42,63,.6); margin-bottom: 32px; }
+.lod-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.lod-type {
+  font-family: var(--font-jp); font-size: 12px; padding: 9px 14px;
+  border: 1px solid rgba(30,107,158,.25); color: var(--water-mid);
+  letter-spacing: .08em; text-align: center;
+}
+/* Lodging photo — WOW moment */
+.lod-photo-stage { position: relative; min-height: 440px; }
+.lod-main-photo { position: relative; transform: rotate(-1.5deg); opacity: 0; }
+.lod-main-photo img { width: 100%; height: 400px; object-fit: cover; }
+.lod-overlap {
+  position: absolute; bottom: -40px; right: -28px;
+  width: 45%; opacity: 0; transform: rotate(3deg);
+}
+.lod-overlap img { width: 100%; height: 180px; object-fit: cover; }
+@media(max-width:768px){ .lod-inner{ grid-template-columns:1fr; } }
+
+/* ── §5 RESTAURANT ────────────────────────────────────── */
+#restaurant { overflow: hidden; }
 .rest-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 600px;
+  display: grid; grid-template-columns: 55fr 45fr; min-height: 580px;
 }
-.rest-photo-side {
-  position: relative;
-  overflow: hidden;
-}
-.rest-photo-side img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.08);
-}
-.rest-text-side {
-  background: var(--ink);
-  padding: 80px 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.rest-text-side .t-section-head { color: var(--paper); }
-.rest-text-side .t-section-head-en { color: var(--water-surface); }
-.rest-body { color: rgba(242,237,232,0.8); font-size: 15px; margin: 24px 0 16px; }
-.rest-body-en { color: rgba(242,237,232,0.5); font-size: 13px; font-family: var(--font-en); }
-.rest-fact {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(91,184,212,0.2);
-  display: flex;
-  gap: 40px;
-}
-.rest-hanko-wrap {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
-}
-@media (max-width: 768px) {
-  .rest-split { grid-template-columns: 1fr; }
-  .rest-photo-side { height: 300px; }
-  .rest-text-side { padding: 48px 24px; }
-}
-
-/* ─── SECTION 6: CREDENTIALS ──────────────────────────── */
-#credentials {
-  background: var(--paper);
-  padding: 100px 0;
-  border-top: 1px solid rgba(14,42,63,0.08);
-}
-.cred-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-}
-.cred-card {
-  background: var(--paper);
-  padding: 56px 48px;
-  border: 1px solid rgba(14,42,63,0.06);
-  position: relative;
-  overflow: hidden;
-}
-.cred-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--water-mid);
-}
-.cred-sublabel {
-  font-family: var(--font-jp);
-  font-size: 13px;
-  color: var(--shadow-sand);
-  margin-top: 8px;
-  line-height: 1.5;
-}
-@media (max-width: 768px) {
-  .cred-grid { grid-template-columns: 1fr; }
-}
-
-/* ─── SECTION 7: ACCESS / MAP ─────────────────────────── */
-#access {
-  background: var(--water-deep);
-  padding: 120px 0;
-  overflow: hidden;
-}
-.access-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-.access-text { color: var(--paper); }
-.access-text .t-section-head { color: var(--paper); }
-.access-text .t-section-head-en { }
-.access-body { color: rgba(242,237,232,0.8); font-size: 15px; margin: 24px 0 16px; }
-.access-body-en { color: rgba(242,237,232,0.5); font-size: 13px; font-family: var(--font-en); }
-.access-route {
-  margin-top: 40px;
-  padding: 24px 28px;
-  border: 1px solid rgba(91,184,212,0.3);
-}
-.access-route-line {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-jp);
-  font-size: 14px;
-  color: rgba(242,237,232,0.85);
-  padding: 8px 0;
-}
-.route-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--water-surface);
-  flex-shrink: 0;
-}
-.route-arrow {
-  color: var(--water-surface);
-  opacity: 0.6;
-  font-size: 12px;
-}
-
-/* Island Map SVG */
-.access-map {
+.rest-img { position: relative; overflow: hidden; }
+.rest-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); }
+.rest-text {
+  background: var(--ink); padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
   position: relative;
 }
-.island-map-svg {
-  width: 100%;
-  max-width: 440px;
-  margin: 0 auto;
-  display: block;
-}
-/* SVG path animation for map draw */
-.map-path {
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
-}
-.map-ferry-path {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-}
-@media (max-width: 768px) {
-  .access-inner { grid-template-columns: 1fr; gap: 48px; }
-}
+.rest-text .sec-en { color: var(--water-surface); }
+.rest-head { font-family: var(--font-jp); font-size: clamp(1.6rem, 2.8vw, 2.6rem); font-weight: 500; line-height: 1.3; margin: 12px 0 24px; color: var(--paper); }
+.rest-body { font-size: 15px; color: rgba(242,237,232,.8); line-height: 1.9; margin-bottom: 14px; }
+.rest-body-en { font-family: var(--font-en); font-size: 13px; color: rgba(242,237,232,.45); }
+.rest-facts { margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(91,184,212,.18); display: flex; gap: 40px; }
+.rest-hanko { position: absolute; bottom: 20px; right: 20px; transform: rotate(-10deg); }
+@media(max-width:768px){ .rest-split{ grid-template-columns:1fr; } .rest-img{ height:280px; } .rest-text{ padding:48px 24px; } }
 
-/* ─── SECTION 8: CONTACT ──────────────────────────────── */
+/* ── §6 KUJIRA RENTAL ─────────────────────────────────── */
+#kujira {
+  background: var(--paper); padding: 80px 0;
+  border-top: 1px solid rgba(14,42,63,.07); border-bottom: 1px solid rgba(14,42,63,.07);
+}
+.kuj-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+.kuj-text { }
+.kuj-head { font-family: var(--font-jp); font-size: clamp(1.4rem, 2.5vw, 2.2rem); font-weight: 500; margin: 10px 0 16px; }
+.kuj-body { font-size: 15px; color: rgba(14,42,63,.7); max-width: 520px; }
+.kuj-body-en { font-family: var(--font-en); font-size: 13px; color: rgba(14,42,63,.45); margin-top: 8px; }
+.kuj-badge {
+  font-family: var(--font-en); font-size: 11px; letter-spacing: .2em;
+  text-transform: uppercase; padding: 10px 24px;
+  border: 1px solid var(--coral-warm); color: var(--coral-warm);
+}
+.kuj-price { font-family: var(--font-en); font-size: 2rem; font-weight: 700; color: var(--coral-warm); }
+.kuj-price-label { font-family: var(--font-jp); font-size: 11px; color: var(--shadow-sand); }
+
+/* ── §7 CREDENTIALS ───────────────────────────────────── */
+#credentials { background: var(--water-deep); padding: 120px 0; }
+.cred-header { text-align: center; margin-bottom: 80px; color: var(--paper); }
+.cred-head { font-family: var(--font-jp); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.3; margin-top: 12px; }
+/* Timeline layout */
+.cred-timeline { max-width: 720px; margin: 0 auto; }
+.cred-item { display: grid; grid-template-columns: 100px 1fr; gap: 40px; align-items: baseline; padding: 40px 0; border-bottom: 1px solid rgba(91,184,212,.12); }
+.cred-year { font-family: var(--font-en); font-size: 1rem; font-weight: 700; color: var(--water-surface); letter-spacing: .08em; }
+.cred-fact { color: var(--paper); }
+.cred-fact-title { font-family: var(--font-jp); font-size: 1.15rem; font-weight: 500; margin-bottom: 6px; }
+.cred-fact-en { font-family: var(--font-en); font-size: 12px; color: rgba(242,237,232,.5); letter-spacing: .1em; }
+.cred-data-row { display: flex; gap: 60px; justify-content: center; margin-top: 80px; }
+.cred-data-item { text-align: center; }
+@media(max-width:768px){ .cred-item{ grid-template-columns: 1fr; gap: 8px; } .cred-data-row{ gap: 32px; flex-wrap: wrap; } }
+
+/* ── §8 ACCESS ────────────────────────────────────────── */
+#access { padding: 120px 0; overflow: hidden; background: var(--paper); }
+.acc-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.acc-aerial { position: relative; overflow: hidden; }
+.acc-aerial img { width: 100%; height: 480px; object-fit: cover; object-position: center; }
+.acc-text {}
+.acc-head { font-family: var(--font-jp); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.3; margin: 12px 0 24px; }
+.acc-body { font-size: 15px; line-height: 1.9; margin-bottom: 14px; }
+.acc-body-en { font-family: var(--font-en); font-size: 13px; color: rgba(14,42,63,.6); margin-bottom: 36px; }
+.acc-route { border: 1px solid rgba(14,42,63,.12); padding: 24px; }
+.acc-step { display: flex; gap: 12px; align-items: center; padding: 9px 0; font-size: 14px; }
+.acc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--water-mid); flex-shrink: 0; }
+.acc-dot.dest { background: var(--coral-warm); }
+.acc-dot.here { background: var(--godray); }
+.acc-step-label { font-family: var(--font-en); font-size: 10px; color: var(--water-surface); letter-spacing: .12em; padding: 6px 0; }
+@media(max-width:768px){ .acc-inner{ grid-template-columns:1fr; gap:48px; } }
+
+/* ── §9 CONTACT ───────────────────────────────────────── */
 #contact {
-  background: var(--paper);
-  padding: 120px 0;
-  text-align: center;
-  position: relative;
+  background: var(--ink); padding: 140px 0 120px;
+  text-align: center; position: relative; overflow: hidden;
 }
+/* Faint water texture behind contact */
+#contact::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(30,107,158,.25) 0%, transparent 65%);
+  pointer-events: none;
+}
+.contact-inner { position: relative; z-index: 1; }
 .contact-wordmark {
-  margin-bottom: 12px;
-  opacity: 0;
-  transform: translateY(24px);
+  font-family: var(--font-jp); font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 700; color: var(--paper); letter-spacing: .05em;
+  margin-bottom: 10px; opacity: 0; transform: translateY(24px);
 }
-.contact-subtitle {
-  font-family: var(--font-en);
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--water-mid);
-  margin-bottom: 48px;
-  opacity: 0;
-  transform: translateY(16px);
+.contact-sub {
+  font-family: var(--font-en); font-size: 10.5px; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--water-mid); margin-bottom: 52px;
+  opacity: 0; transform: translateY(16px);
 }
 .contact-cta {
-  display: inline-block;
-  padding: 18px 56px;
-  background: var(--water-deep);
-  color: var(--paper);
-  font-family: var(--font-en);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: none;
-  /* NO border-radius — field journal: sharp corners */
-  transition: background 0.3s, transform 0.2s;
-  opacity: 0;
-  transform: translateY(16px);
+  display: inline-block; padding: 20px 60px;
+  background: var(--water-mid); color: var(--paper);
+  font-family: var(--font-en); font-size: 11.5px; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase; text-decoration: none;
+  /* NO border-radius — sharp field-journal corners */
+  position: relative; overflow: hidden;
+  opacity: 0; transform: translateY(16px);
+  transition: background .35s;
 }
-.contact-cta:hover {
-  background: var(--water-mid);
-  transform: translateY(-2px);
+.contact-cta:hover { background: var(--water-deep); }
+/* Shimmer sweep on hover */
+.contact-cta::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+  transition: left .45s ease;
 }
+.contact-cta:hover::after { left: 150%; }
 .contact-cta-jp {
-  display: block;
-  font-family: var(--font-jp);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  opacity: 0.7;
-  margin-top: 4px;
-  text-transform: none;
+  display: block; font-family: var(--font-jp); font-size: 10.5px;
+  letter-spacing: .07em; opacity: .65; margin-top: 4px; text-transform: none;
 }
 .contact-info {
-  margin-top: 40px;
-  font-family: var(--font-en);
-  font-size: 12px;
-  color: var(--shadow-sand);
-  letter-spacing: 0.1em;
-  opacity: 0;
-  transform: translateY(12px);
+  margin-top: 40px; font-family: var(--font-en); font-size: 11px;
+  letter-spacing: .1em; color: rgba(242,237,232,.35);
+  opacity: 0; transform: translateY(12px);
 }
-.contact-hanko-wrap {
-  position: absolute;
-  bottom: 60px;
-  right: 80px;
-  opacity: 0;
-  transform: scale(0.7);
+.contact-hanko-pos {
+  position: absolute; bottom: 52px; right: 72px;
+  opacity: 0; transform: scale(.7) rotate(-8deg); z-index: 1;
 }
-@media (max-width: 768px) {
-  .contact-hanko-wrap { right: 24px; bottom: 40px; }
-}
+.contact-hanko-pos .hanko { width: 88px; height: 88px; font-size: 12px; }
+@media(max-width:768px){ .contact-hanko-pos{ right:24px; } }
 
-/* ─── FOOTER ──────────────────────────────────────────── */
+/* ── FOOTER ───────────────────────────────────────────── */
 footer {
-  background: var(--ink);
-  padding: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+  background: rgba(11,50,89,.95); padding: 40px 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
 }
-.footer-logo {
-  font-family: var(--font-jp);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--paper);
-  opacity: 0.7;
-}
-.footer-links {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
-.footer-links a {
-  font-family: var(--font-en);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--paper);
-  opacity: 0.4;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-.footer-links a:hover { opacity: 0.8; }
-.footer-copy {
-  font-family: var(--font-en);
-  font-size: 10px;
-  color: var(--paper);
-  opacity: 0.3;
-  letter-spacing: 0.05em;
-}
+.footer-logo { font-family: var(--font-jp); font-size: 13px; font-weight: 700; color: rgba(242,237,232,.55); }
+.footer-links { display: flex; gap: 20px; list-style: none; }
+.footer-links a { font-family: var(--font-en); font-size: 9.5px; letter-spacing: .15em; text-transform: uppercase; color: rgba(242,237,232,.35); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: rgba(242,237,232,.8); }
+.footer-cr { font-family: var(--font-en); font-size: 9.5px; color: rgba(242,237,232,.25); }
+
+/* ── Utility / reveal states ──────────────────────────── */
+.will-reveal { opacity: 0; transform: translateY(32px); }
+.will-reveal-left { opacity: 0; transform: translateX(-40px); }
+.sec-en { font-family: var(--font-en); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--water-surface); margin-bottom: 8px; }
 </style>
 </head>
-
 <body>
 
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">シーフレンド</a>
-  <ul class="nav-links">
+  <ul class="nav-list">
     <li><a href="#diving">Diving</a></li>
     <li><a href="#lodging">Stay</a></li>
     <li><a href="#restaurant">Restaurant</a></li>
+    <li><a href="#kujira">Rentals</a></li>
     <li><a href="#access">Access</a></li>
     <li><a href="#contact">Reserve</a></li>
   </ul>
-  <span class="nav-lang t-caption" onclick="toggleLang()">JP / EN</span>
 </nav>
 
-<!-- SECTION 1: HERO -->
+<!-- DEPTH GAUGE -->
+<div id="depth-gauge">
+  <span class="dg-label">depth</span>
+  <div class="dg-track">
+    <div class="dg-fill" id="dg-fill" style="height:0%"></div>
+    <span class="dg-mark" style="top:0%">surface</span>
+    <span class="dg-mark" style="top:33%">10m</span>
+    <span class="dg-mark" style="top:66%">20m</span>
+    <span class="dg-mark" style="top:95%">30m+</span>
+  </div>
+</div>
+
+<!-- §1 HERO -->
 <section id="hero">
-  <div class="hero-bg">
-    <img class="hero-fallback" src="./assets/step1-hero-v1.png" alt="Kerama Blue underwater, Tokashiki Island">
-    <video id="hero-video" autoplay muted loop playsinline poster="./assets/step1-hero-v1.png" style="display:none;">
+  <div class="hero-media">
+    <img src="./assets/step1-hero-v1.png" alt="Kerama Blue underwater, Tokashiki Island" id="hero-img">
+    <video id="hero-vid" autoplay muted loop playsinline poster="./assets/step1-hero-v1.png">
       <source src="./motion/step2_5-loop-v1.mp4" type="video/mp4">
     </video>
   </div>
-  <div class="hero-godray"></div>
-  <div class="hero-vignette"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-rays"></div>
 
   <div class="hero-content">
-    <p class="hero-eyebrow t-caption">TOKASHIKI ISLAND · KERAMA · OKINAWA</p>
-    <h1 class="hero-tagline-jp">慶良間ブルーの<br>世界へ</h1>
-    <p class="hero-tagline-en">Into the Kerama Blue — a colour the sea keeps only here.</p>
+    <p class="hero-location cap">Tokashiki Island · Kerama · Okinawa</p>
+    <h1 class="hero-title">
+      <span class="line-1"></span>
+      <span class="br"></span>
+      <span class="line-2"></span>
+    </h1>
+    <p class="hero-en">Into the Kerama Blue — a colour the sea keeps only here.</p>
   </div>
 
-  <div class="hero-hanko hanko" style="position:absolute;bottom:72px;left:64px;z-index:2;color:var(--coral-warm);border-color:var(--coral-warm);">
+  <div class="hero-hanko-pos hanko" style="color:var(--coral-warm);border-color:var(--coral-warm);">
     渡嘉敷<br>島
   </div>
-
-  <div class="hero-scroll-hint">
-    <span>SCROLL</span>
-    <div class="scroll-line"></div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-stem"></div>
   </div>
 </section>
 
-<!-- SECTION 2: KERAMA BLUE INTRO -->
-<section id="kerama-blue">
-  <div class="container">
-    <div class="kb-inner">
-      <div>
-        <p class="t-vertical kb-label">KERAMA BLUE</p>
-      </div>
-      <div class="kb-text-block">
-        <div class="kb-line" id="kb-line"></div>
-        <h2 class="kb-headline">慶良間ブルーとは、<br>ここだけに存在する青。</h2>
-        <p class="kb-body">透明度30メートルを超える水中世界。慶良間諸島の海に与えられた名前「慶良間ブルー」は、どこにもない深い青を指す言葉です。珊瑚礁が育む豊かな命、渡嘉敷島はその核心にあります。</p>
-        <p class="kb-body-en">Kerama Blue is not a brand invention — it is what the sea genuinely looks like here. Visibility beyond 30 metres. Coral reefs of extraordinary richness. Tokashiki Island is the island you reach only if you intend to.</p>
+<!-- §2 BRAND IDENTITY -->
+<section id="brand">
+  <div class="brand-water-reveal" id="brand-water"></div>
+  <div class="wrap">
+    <div class="brand-inner">
+      <span class="brand-spine">Kerama Blue</span>
+      <div class="brand-text">
+        <div class="brand-rule" id="brand-rule"></div>
+        <h2 class="brand-headline will-reveal">慶良間ブルーとは、<br>ここだけに存在する青。</h2>
+        <p class="brand-body will-reveal">透明度30メートル以上。慶良間諸島の海は、「慶良間ブルー」という固有の名前を与えられるほど、どこにもない深さと輝きを持っています。</p>
+        <p class="brand-body-en will-reveal">Kerama Blue is not a brand — it is what the sea genuinely looks like here. Clarity beyond 30 metres. Coral reefs of extraordinary richness. Tokashiki Island is the island you reach only if you decide to.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 3: DIVING -->
+<!-- §3 DIVING -->
 <section id="diving">
-  <div class="container">
+  <div class="wrap">
     <div class="div-inner">
-      <div class="div-text">
-        <p class="t-section-head-en">DIVING</p>
-        <h2 class="t-section-head">慶良間の海を、<br>深く知る。</h2>
-        <div class="div-annotation">
-          <p class="t-body">PADIインターナショナル認定5スターリゾート。ファンダイブから体験ダイビング、ボートシュノーケリングまで。PADIインストラクターコースも対応します。</p>
-          <p style="margin-top:12px;" class="t-body-en">PADI 5-Star Certified Resort. Fan diving, experience diving, boat snorkeling. PADI certification from beginner to instructor level. Multiple dive boats, multiple instructors.</p>
-        </div>
-        <div class="div-stat-pair">
-          <div class="div-stat">
-            <div class="t-data-stat" data-count="5" data-suffix="★">5★</div>
-            <div class="t-data-label">PADI CERTIFIED RESORT</div>
-          </div>
-          <div class="div-stat">
-            <div class="t-data-stat" data-count="30" data-suffix="m+">30m+</div>
-            <div class="t-data-label">水中透明度 / VISIBILITY</div>
-          </div>
-        </div>
-      </div>
-      <div class="div-photo-wrap">
-        <div class="div-photo-inner tape-photo">
-          <img src="./assets/step1-hero-v1.png" alt="Kerama Blue diving" style="filter: brightness(0.95) saturate(1.1);">
-          <span class="tape tc-tl"></span>
-          <span class="tape tc-tr"></span>
-          <span class="tape tc-bl"></span>
-          <span class="tape tc-br"></span>
-        </div>
-        <p class="t-marginalia" style="margin-top:16px;text-align:right;">— 慶良間諸島 渡嘉敷島沖, depth 18m</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 4: LODGING — WOW MOMENT -->
-<section id="lodging">
-  <div class="container">
-    <div class="lodging-inner">
-      <div class="lodging-text">
-        <p class="t-section-head-en">STAY</p>
-        <h2 class="t-section-head">島の時間で、<br>眠る。</h2>
-        <p class="lodging-body">ペンション、ログハウス、古民家、グランピング。渡嘉敷の自然に包まれた4つのスタイルで、それぞれの島時間を。</p>
-        <p class="lodging-body-en">Four ways to stay: pension, log house, traditional inn, glamping. Each grounded in the same island pace — slow, removed, genuinely quiet.</p>
-        <div class="lodging-types">
-          <div class="lodging-type-pill">ペンション</div>
-          <div class="lodging-type-pill">ログハウス</div>
-          <div class="lodging-type-pill">古民家</div>
-          <div class="lodging-type-pill">グランピング</div>
-        </div>
-      </div>
-      <!-- WOW MOMENT: tape-corner photos appear one by one -->
-      <div class="lodging-photos">
-        <div class="lodging-photo-stack">
-          <div class="lp-photo lp-1" id="lp1">
-            <div class="tape-photo">
-              <img src="./assets/step1-hero-v1.png" alt="Pension stay" style="filter:sepia(0.15) brightness(0.88);">
-              <span class="tape tc-tl" id="tape-lp1-tl"></span>
-              <span class="tape tc-tr" id="tape-lp1-tr"></span>
-              <span class="tape tc-bl" id="tape-lp1-bl"></span>
-              <span class="tape tc-br" id="tape-lp1-br"></span>
-            </div>
-            <p class="t-caption" style="margin-top:8px;">ペンション / Pension</p>
-          </div>
-          <div class="lp-photo lp-2" id="lp2">
-            <div class="tape-photo">
-              <img src="./assets/step1-hero-v1.png" alt="Log house" style="filter:sepia(0.2) brightness(0.85) hue-rotate(10deg);">
-              <span class="tape tc-tl" id="tape-lp2-tl"></span>
-              <span class="tape tc-tr" id="tape-lp2-tr"></span>
-              <span class="tape tc-bl" id="tape-lp2-bl"></span>
-              <span class="tape tc-br" id="tape-lp2-br"></span>
-            </div>
-            <p class="t-caption" style="margin-top:8px; color:var(--water-surface); opacity:0.7;">ログハウス / Log House</p>
-          </div>
-          <div class="lp-photo lp-3" id="lp3">
-            <div class="tape-photo">
-              <img src="./assets/step1-hero-v1.png" alt="Glamping" style="filter:sepia(0.1) brightness(0.82);">
-              <span class="tape tc-tl" id="tape-lp3-tl"></span>
-              <span class="tape tc-tr" id="tape-lp3-tr"></span>
-              <span class="tape tc-bl" id="tape-lp3-bl"></span>
-              <span class="tape tc-br" id="tape-lp3-br"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 5: RESTAURANT -->
-<section id="restaurant">
-  <div class="rest-split">
-    <div class="rest-photo-side" id="rest-photo">
-      <img src="./assets/step1-hero-v1.png" alt="Restaurant seafood from Kerama" style="filter:brightness(0.85) saturate(1.3) hue-rotate(15deg);">
-      <div class="rest-hanko-wrap">
-        <div class="hanko" style="transform:rotate(-12deg);">阿波連<br>浜</div>
-      </div>
-    </div>
-    <div class="rest-text-side washi-surface">
-      <p class="t-section-head-en">RESTAURANT</p>
-      <h2 class="t-section-head">潜った海の幸を、<br>その日の夜に。</h2>
-      <p class="rest-body">島野菜と慶良間の新鮮な海産物を使ったレストラン。阿波連浜まで徒歩1分。74席。</p>
-      <p class="rest-body-en">74 seats, one minute from Aharen Beach. The fish you dived with in the morning — on the table that evening. Island vegetables, Kerama seafood, no import menu.</p>
-      <div class="rest-fact">
-        <div>
-          <div class="t-data-stat">74</div>
-          <div class="t-data-label">席 / SEATS</div>
-        </div>
-        <div>
-          <div class="t-data-stat">1<span style="font-size:1.5rem;opacity:0.7;">min</span></div>
-          <div class="t-data-label">阿波連浜まで / TO AHAREN BEACH</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 6: CREDENTIALS -->
-<section id="credentials">
-  <div class="container">
-    <p class="t-section-head-en" style="text-align:center;margin-bottom:16px;">CREDENTIALS</p>
-    <h2 class="t-section-head" style="text-align:center;margin-bottom:64px;">積み重なった<br>実績と信頼。</h2>
-    <div class="cred-grid">
-      <div class="cred-card">
-        <div class="t-data-stat" id="cred-1984">1984</div>
-        <div class="t-data-label">創業 / ESTABLISHED</div>
-        <p class="cred-sublabel">慶良間の海と共に40年以上</p>
-      </div>
-      <div class="cred-card">
-        <div class="t-data-stat" style="font-size:3rem;">5★</div>
-        <div class="t-data-label">PADI INTERNATIONAL</div>
-        <p class="cred-sublabel">PADI インターナショナル認定 5スター</p>
-      </div>
-      <div class="cred-card">
-        <div class="t-data-stat" id="cred-6">6</div>
-        <div class="t-data-label">TRIPADVISOR TRAVELERS' CHOICE</div>
-        <p class="cred-sublabel">6年連続受賞</p>
-      </div>
-      <div class="cred-card">
-        <div class="t-data-stat" style="font-size:2.5rem;">PADI</div>
-        <div class="t-data-label">INSTRUCTOR CERTIFICATION</div>
-        <p class="cred-sublabel">初心者からインストラクターまで対応</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 7: ACCESS -->
-<section id="access">
-  <div class="container">
-    <div class="access-inner">
-      <div class="access-text">
-        <p class="t-section-head-en">ACCESS</p>
-        <h2 class="t-section-head">辿り着く人だけが<br>見られる青。</h2>
-        <p class="access-body">沖縄本島・泊港から高速船で約35分。この色の海を見るためだけに来る価値がある。</p>
-        <p class="access-body-en">From Tomari Port, Naha: 35 minutes by high-speed ferry. The sea rewards those who commit to arriving.</p>
-        <div class="access-route">
-          <div class="access-route-line">
-            <span class="route-dot"></span>
-            <span>那覇 泊港 / Tomari Port, Naha</span>
-          </div>
-          <div class="access-route-line" style="padding-left:4px;">
-            <span class="route-arrow">↓</span>
-            <span style="font-family:var(--font-en);font-size:11px;color:var(--water-surface);letter-spacing:0.1em;">HIGH-SPEED FERRY · 35 MIN</span>
-          </div>
-          <div class="access-route-line">
-            <span class="route-dot" style="background:var(--coral-warm);"></span>
-            <span>渡嘉敷島 渡嘉敷港 / Tokashiki Port</span>
-          </div>
-          <div class="access-route-line" style="padding-left:4px;">
-            <span class="route-arrow">↓</span>
-            <span style="font-family:var(--font-en);font-size:11px;color:var(--water-surface);letter-spacing:0.1em;">CAR / TAXI · 10 MIN</span>
-          </div>
-          <div class="access-route-line">
-            <span class="route-dot" style="background:var(--godray);"></span>
-            <span>シーフレンド · SeaFriend</span>
-          </div>
-        </div>
-      </div>
-      <div class="access-map">
-        <!-- Illustrated island map (SVG) -->
-        <svg class="island-map-svg" viewBox="0 0 440 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Ocean background -->
-          <rect width="440" height="480" fill="#0B3259"/>
-          <!-- Ferry route path -->
-          <path class="map-ferry-path" d="M 60 80 Q 120 100 160 140 Q 200 180 220 220" stroke="#5BB8D4" stroke-width="1.5" stroke-dasharray="6,4" fill="none" opacity="0.6"/>
-          <!-- Tokashiki Island outline (stylized) -->
-          <path class="map-path" d="M 220 120 C 240 100 270 95 290 110 C 320 130 335 155 330 185 C 325 215 310 240 290 255 C 270 268 250 270 235 260 C 215 248 200 230 195 210 C 188 190 195 165 205 148 Z" stroke="#F2EDE8" stroke-width="2" fill="rgba(242,237,232,0.06)"/>
-          <!-- Aharen Beach marker -->
-          <circle cx="275" cy="230" r="5" fill="#C9734A" opacity="0.9"/>
-          <text x="285" y="235" fill="#F2EDE8" font-family="'Noto Sans JP'" font-size="9" opacity="0.7">阿波連浜</text>
-          <!-- SeaFriend marker -->
-          <circle cx="265" cy="210" r="6" fill="#C9A84C"/>
-          <text x="275" y="208" fill="#F2EDE8" font-family="'Noto Sans JP'" font-size="9" font-weight="700">SeaFriend</text>
-          <!-- Tomari port marker (ferry origin) -->
-          <circle cx="80" cy="68" r="4" fill="#5BB8D4" opacity="0.8"/>
-          <text x="90" y="74" fill="#5BB8D4" font-family="'Syne'" font-size="9" opacity="0.8">TOMARI PORT</text>
-          <!-- Depth annotations (marginalia style) -->
-          <text x="130" y="220" fill="#F2EDE8" font-family="'Noto Sans JP'" font-size="9" opacity="0.25" transform="rotate(-8,130,220)">—— 慶良間海峡</text>
-          <text x="50" y="300" fill="#F2EDE8" font-family="'Syne'" font-size="8" opacity="0.2" letter-spacing="2">PACIFIC OCEAN</text>
-          <!-- Compass rose (minimal) -->
-          <text x="380" y="440" fill="#F2EDE8" font-family="'Syne'" font-size="12" opacity="0.3" text-anchor="middle">N</text>
-          <line x1="380" y1="420" x2="380" y2="445" stroke="#F2EDE8" stroke-width="1" opacity="0.3"/>
+      <div class="div-img-wrap will-reveal">
+        <img src="./assets/diving-v1.png" alt="Diving in Kerama Blue" class="div-img" id="div-img" onerror="this.src='./assets/step1-hero-v1.png'">
+        <!-- SVG annotation overlay -->
+        <svg class="div-annotations" viewBox="0 0 500 520" preserveAspectRatio="none">
+          <path class="ann-path" id="ann1" d="M 420 120 Q 380 120 340 140" />
+          <text class="ann-label" id="ann1-label" x="345" y="158" font-size="10">慶良間海峡 · 水深18m</text>
+          <path class="ann-path" id="ann2" d="M 60 320 Q 100 310 140 290" />
+          <text class="ann-label" id="ann2-label" x="50" y="335" font-size="10">珊瑚礁エリア</text>
         </svg>
       </div>
+      <div class="div-text will-reveal-left">
+        <p class="sec-en">Diving</p>
+        <h2 class="div-head">慶良間の海を、<br>深く知る。</h2>
+        <p class="div-body">PADIインターナショナル認定5スターリゾートとして、ファンダイブから体験ダイビング、ボートシュノーケリング、PADIインストラクターコースまで対応。複数のダイブボートで慶良間の海に向かいます。</p>
+        <p class="div-body-en">PADI 5-Star Certified Resort. Fan diving, experience diving, boat snorkeling. PADI certification from beginner to instructor. Multiple boats, Kerama-certified instructors.</p>
+        <div class="div-stats">
+          <div><div class="stat-num" data-count="5">5</div><div class="stat-label">PADI 5-STAR RESORT</div></div>
+          <div><div class="stat-num" data-count="30" data-suffix="+">30+</div><div class="stat-label">m 水中透明度</div></div>
+        </div>
+        <div class="div-types">
+          <div class="div-type">ファンダイビング</div>
+          <div class="div-type">体験ダイビング</div>
+          <div class="div-type">ボートシュノーケリング</div>
+          <div class="div-type">PADIコース / Certification</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 8: CONTACT -->
-<section id="contact" class="washi-surface">
-  <div class="container" style="max-width:640px;">
-    <h2 class="t-wordmark contact-wordmark">シーフレンド</h2>
-    <p class="contact-subtitle">SeaFriend Co., Ltd. · Tokashiki Island</p>
+<!-- §4 STAY -->
+<section id="lodging">
+  <div class="wrap">
+    <div class="lod-inner">
+      <div class="lod-text will-reveal-left">
+        <p class="sec-en">Stay</p>
+        <h2 class="lod-head">島の時間で、<br>眠る。</h2>
+        <p class="lod-body">ペンション、ログハウス、古民家、グランピング。渡嘉敷の自然に包まれた4つのスタイルで、それぞれの島時間を過ごす。</p>
+        <p class="lod-body-en">Four ways to stay on Tokashiki: pension, log house, traditional inn, glamping. Every style grounded in the same island pace — slow, removed, genuinely quiet.</p>
+        <div class="lod-types">
+          <div class="lod-type">ペンション</div>
+          <div class="lod-type">ログハウス</div>
+          <div class="lod-type">古民家</div>
+          <div class="lod-type">グランピング</div>
+        </div>
+      </div>
+      <!-- WOW: tape-corner photo appears with staggered tape -->
+      <div class="lod-photo-stage">
+        <div class="lod-main-photo tape-photo" id="lod-main">
+          <img src="./assets/lodging-v1.png" alt="Lodging on Tokashiki Island" onerror="this.src='./assets/step1-hero-v1.png'; this.style.filter='sepia(0.15) brightness(0.88)'">
+          <span class="t tl" id="lt-tl"></span>
+          <span class="t tr" id="lt-tr"></span>
+          <span class="t bl" id="lt-bl"></span>
+          <span class="t br" id="lt-br"></span>
+        </div>
+        <div class="lod-overlap tape-photo" id="lod-overlap">
+          <img src="./assets/step1-hero-v1.png" alt="Kerama Blue from the shore" style="filter:saturate(1.3) brightness(0.88)">
+          <span class="t tl" id="lt2-tl"></span>
+          <span class="t tr" id="lt2-tr"></span>
+          <span class="t bl" id="lt2-bl"></span>
+          <span class="t br" id="lt2-br"></span>
+        </div>
+        <p style="margin-top:48px;font-size:11px;font-family:var(--font-en);color:var(--shadow-sand);letter-spacing:.1em;text-align:right;" class="will-reveal">渡嘉敷島 — TOKASHIKI ISLAND</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §5 RESTAURANT -->
+<section id="restaurant">
+  <div class="rest-split">
+    <div class="rest-img" id="rest-img-wrap">
+      <img src="./assets/restaurant-v1.png" alt="Kerama seafood restaurant" onerror="this.src='./assets/step1-hero-v1.png'; this.style.filter='brightness(0.85) saturate(1.3) hue-rotate(15deg)'">
+      <div class="rest-hanko"><div class="hanko" style="transform:rotate(-12deg);">阿波連<br>浜</div></div>
+    </div>
+    <div class="rest-text">
+      <p class="sec-en">Restaurant</p>
+      <h2 class="rest-head will-reveal">潜った海の幸を、<br>その日の夜に。</h2>
+      <p class="rest-body will-reveal">島野菜と慶良間の新鮮な海産物を使ったレストラン。74席。阿波連浜まで徒歩1分の場所から、夕暮れの海を見ながらどうぞ。</p>
+      <p class="rest-body-en will-reveal">74 seats. One minute from Aharen Beach. Island vegetables and fresh Kerama seafood — what you dove past in the morning, on the table that evening.</p>
+      <div class="rest-facts will-reveal">
+        <div><div class="stat-num">74</div><div class="stat-label">席 / SEATS</div></div>
+        <div>
+          <div class="stat-num">1<span style="font-size:1.4rem;opacity:.65;">min</span></div>
+          <div class="stat-label">阿波連浜まで</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §6 KUJIRA RENTAL CAR -->
+<section id="kujira">
+  <div class="wrap">
+    <div class="kuj-inner">
+      <div class="kuj-text will-reveal">
+        <p class="sec-en">Car Rental</p>
+        <h2 class="kuj-head">島を、自分のペースで。</h2>
+        <p class="kuj-body">「くじらレンタカー」で渡嘉敷島を自由に。透き通った阿波連浜から、展望台まで。島の小さな道も、あなただけのものに。</p>
+        <p class="kuj-body-en">Kujira Rental Car — explore Tokashiki Island at your own pace. From Aharen Beach to the island viewpoints, the small roads of the island are yours.</p>
+      </div>
+      <div class="will-reveal" style="text-align:right;">
+        <div class="kuj-price">¥3,300<span style="font-size:1rem;opacity:.65;">/hr+</span></div>
+        <div class="kuj-price-label">くじらレンタカー / Kujira Rental Car</div>
+        <div style="margin-top:20px;"><span class="kuj-badge">Book a Vehicle</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §7 CREDENTIALS TIMELINE -->
+<section id="credentials">
+  <div class="wrap">
+    <div class="cred-header">
+      <p class="cap" style="color:var(--water-surface);">Credentials</p>
+      <h2 class="cred-head will-reveal">積み重なった<br>実績と信頼。</h2>
+    </div>
+    <div class="cred-timeline">
+      <div class="cred-item will-reveal">
+        <div class="cred-year">1984</div>
+        <div class="cred-fact">
+          <div class="cred-fact-title">シーフレンド、創業。</div>
+          <div class="cred-fact-en">SeaFriend founded on Tokashiki Island, Kerama.</div>
+        </div>
+      </div>
+      <div class="cred-item will-reveal">
+        <div class="cred-year">PADI</div>
+        <div class="cred-fact">
+          <div class="cred-fact-title">PADIインターナショナル 5スター認定リゾート</div>
+          <div class="cred-fact-en">PADI International 5-Star Certified Resort — highest certification level.</div>
+        </div>
+      </div>
+      <div class="cred-item will-reveal">
+        <div class="cred-year">6年</div>
+        <div class="cred-fact">
+          <div class="cred-fact-title">Tripadvisor Travelers' Choice 6年連続受賞</div>
+          <div class="cred-fact-en">Six consecutive years — Tripadvisor Travelers' Choice Award.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cred-data-row">
+      <div class="cred-data-item will-reveal">
+        <div class="stat-num" id="c-1984" style="color:var(--water-surface);">1984</div>
+        <div class="stat-label" style="color:rgba(242,237,232,.55);">創業年 / Est.</div>
+      </div>
+      <div class="cred-data-item will-reveal">
+        <div class="stat-num" id="c-6" style="color:var(--water-surface);">6</div>
+        <div class="stat-label" style="color:rgba(242,237,232,.55);">TripAdvisor Awards</div>
+      </div>
+      <div class="cred-data-item will-reveal">
+        <div class="stat-num" style="color:var(--water-surface);">5★</div>
+        <div class="stat-label" style="color:rgba(242,237,232,.55);">PADI Certified</div>
+      </div>
+      <div class="cred-data-item will-reveal">
+        <div class="stat-num" id="c-74" style="color:var(--water-surface);">74</div>
+        <div class="stat-label" style="color:rgba(242,237,232,.55);">Restaurant Seats</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §8 ACCESS -->
+<section id="access">
+  <div class="wrap">
+    <div class="acc-inner">
+      <div class="acc-aerial will-reveal">
+        <img src="./assets/aerial-v1.png" alt="Tokashiki Island aerial, Kerama" onerror="this.src='./assets/step1-hero-v1.png'">
+        <p style="margin-top:10px;font-family:var(--font-en);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--shadow-sand);">Tokashiki Island — Kerama, Okinawa</p>
+      </div>
+      <div class="acc-text will-reveal-left">
+        <p class="sec-en">Access</p>
+        <h2 class="acc-head">辿り着く人だけが<br>見られる青。</h2>
+        <p class="acc-body">沖縄本島・泊港から高速船で約35分。渡嘉敷島へのアクセスは、決して難しくはありません。ただ、来ようと決めた人だけが来る場所です。</p>
+        <p class="acc-body-en">35 minutes by high-speed ferry from Tomari Port, Naha. Not far — but only those who intend to arrive, do.</p>
+        <div class="acc-route">
+          <div class="acc-step"><span class="acc-dot"></span>那覇 泊港 / Tomari Port, Naha</div>
+          <div class="acc-step-label" style="padding-left:19px;">↓ &nbsp; HIGH-SPEED FERRY · 35 MIN</div>
+          <div class="acc-step"><span class="acc-dot dest"></span>渡嘉敷港 / Tokashiki Port</div>
+          <div class="acc-step-label" style="padding-left:19px;">↓ &nbsp; CAR / TAXI · 10 MIN</div>
+          <div class="acc-step"><span class="acc-dot here"></span>シーフレンド · SeaFriend</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §9 CONTACT -->
+<section id="contact">
+  <div class="contact-inner wrap" style="max-width:660px;">
+    <h2 class="contact-wordmark">シーフレンド</h2>
+    <p class="contact-sub">SeaFriend Co., Ltd. · Tokashiki Island · Kerama, Okinawa</p>
     <a href="mailto:info@seafriend.jp" class="contact-cta">
-      RESERVE YOUR DIVE
+      Reserve Your Dive
       <span class="contact-cta-jp">ご予約・お問い合わせはこちら</span>
     </a>
-    <p class="contact-info">
-      info@seafriend.jp · 渡嘉敷島 阿波連 · www.seafriend.jp
-    </p>
+    <p class="contact-info">info@seafriend.jp · www.seafriend.jp · 渡嘉敷島 阿波連</p>
   </div>
-  <div class="contact-hanko-wrap">
-    <div class="hanko hanko-large" style="transform:rotate(-8deg);">
-      慶良間<br>シーフレンド
-    </div>
+  <div class="contact-hanko-pos" id="c-hanko">
+    <div class="hanko" style="width:86px;height:86px;font-size:11.5px;border-width:3px;">慶良間<br>シーフレンド</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-logo">© 有限会社シーフレンド</span>
+  <span class="footer-logo">© 有限会社シーフレンド — Tokashiki Island</span>
   <ul class="footer-links">
-    <li><a href="#">Diving</a></li>
-    <li><a href="#">Stay</a></li>
-    <li><a href="#">Restaurant</a></li>
-    <li><a href="#">Car Rental</a></li>
-    <li><a href="#">Access</a></li>
+    <li><a href="#diving">Diving</a></li>
+    <li><a href="#lodging">Stay</a></li>
+    <li><a href="#restaurant">Restaurant</a></li>
+    <li><a href="#kujira">Rentals</a></li>
+    <li><a href="#access">Access</a></li>
   </ul>
-  <span class="footer-copy">Tokashiki Island · Kerama · Okinawa</span>
+  <span class="footer-cr">Kerama Islands · Okinawa · Japan</span>
 </footer>
 
-<!-- SCRIPTS: Lenis + GSAP -->
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<!-- CDN: Anime.js + GSAP + Lenis -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
 <script>
-// ─── Lenis smooth scroll ───────────────────────────────
-const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-requestAnimationFrame(raf);
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(time => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
-
-// ─── Register ScrollTrigger ────────────────────────────
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── NAV scroll state ──────────────────────────────────
-ScrollTrigger.create({
-  trigger: "#kerama-blue",
-  start: "top 80%",
-  onEnter: () => document.getElementById("nav").classList.add("scrolled"),
-  onLeaveBack: () => document.getElementById("nav").classList.remove("scrolled")
-});
+// ── Lenis smooth scroll ──────────────────────────────────
+const lenis = new Lenis({ duration: 1.25, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+gsap.ticker.add(t => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+lenis.on('scroll', ScrollTrigger.update);
 
-// ─── MOTION CLASS 1: Hero entrance — composition assembles ─
-window.addEventListener("load", () => {
-  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-  tl.to(".hero-eyebrow",   { opacity: 1, y: 0, duration: 0.9, delay: 0.3 })
-    .to(".hero-tagline-jp", { opacity: 1, y: 0, duration: 1.1 }, "-=0.5")
-    .to(".hero-tagline-en", { opacity: 1, y: 0, duration: 0.8 }, "-=0.6")
-    .to(".hero-scroll-hint",{ opacity: 1, duration: 0.6 }, "-=0.2")
-    .to(".hero-hanko",      { opacity: 1, scale: 1, rotation: -5, duration: 0.7, ease: "back.out(1.5)" }, "-=0.4");
-});
+// ── Hero video ───────────────────────────────────────────
+const heroVid = document.getElementById('hero-vid');
+heroVid.addEventListener('canplay', () => heroVid.classList.add('loaded'));
+heroVid.load();
 
-// ─── MOTION CLASS 2: Scroll parallax — hero bg ────────
-gsap.to("#hero .hero-bg", {
-  yPercent: 30,
-  ease: "none",
-  scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 1 }
-});
-
-// ─── Kerama Blue line draw ─────────────────────────────
-gsap.to("#kb-line", {
-  width: "80px",
-  duration: 1.2,
-  ease: "power2.inOut",
-  scrollTrigger: { trigger: "#kerama-blue", start: "top 70%" }
-});
-gsap.from(".kb-headline, .kb-body, .kb-body-en", {
-  opacity: 0, y: 30, stagger: 0.2, duration: 0.9, ease: "power2.out",
-  scrollTrigger: { trigger: "#kerama-blue", start: "top 65%" }
-});
-
-// ─── Diving — annotation draw-in + parallax ───────────
-gsap.from(".div-text", {
-  opacity: 0, x: -40, duration: 1, ease: "power2.out",
-  scrollTrigger: { trigger: "#diving", start: "top 70%" }
-});
-gsap.from(".div-photo-wrap", {
-  opacity: 0, y: 40, duration: 1.1, ease: "power2.out",
-  scrollTrigger: { trigger: "#diving", start: "top 65%" }
-});
-gsap.to(".div-photo-inner img", {
-  yPercent: -8, ease: "none",
-  scrollTrigger: { trigger: "#diving", start: "top bottom", end: "bottom top", scrub: 1.5 }
-});
-// Annotation counter
-gsap.from(".div-annotation", {
-  opacity: 0, x: -20, duration: 0.8, delay: 0.3, ease: "power2.out",
-  scrollTrigger: { trigger: ".div-annotation", start: "top 80%" }
-});
-
-// ─── MOTION CLASS 5: WOW MOMENT — Lodging tape corners ─
-// Photos and tape corners appear one by one with tactile stagger
-ScrollTrigger.create({
-  trigger: "#lodging",
-  start: "top 55%",
-  once: true,
-  onEnter: () => {
-    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-    // Photo 1 + its 4 tape corners
-    tl.to("#lp1", { opacity: 1, y: 0, duration: 0.5 })
-      .from("#tape-lp1-tl", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.2, ease: "back.out(2)" })
-      .from("#tape-lp1-tr", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.2, ease: "back.out(2)" }, "-=0.1")
-      .from("#tape-lp1-bl", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.2, ease: "back.out(2)" }, "-=0.1")
-      .from("#tape-lp1-br", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.2, ease: "back.out(2)" }, "-=0.1")
-      // Photo 2 + tape corners
-      .to("#lp2", { opacity: 1, y: 0, duration: 0.5 }, "+=0.15")
-      .from("#tape-lp2-tl", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.18, ease: "back.out(2)" })
-      .from("#tape-lp2-tr", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.18, ease: "back.out(2)" }, "-=0.08")
-      .from("#tape-lp2-bl", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.18, ease: "back.out(2)" }, "-=0.08")
-      .from("#tape-lp2-br", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.18, ease: "back.out(2)" }, "-=0.08")
-      // Photo 3
-      .to("#lp3", { opacity: 1, y: 0, duration: 0.5 }, "+=0.1")
-      .from("#tape-lp3-tl", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.18, ease: "back.out(2)" })
-      .from("#tape-lp3-tr", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.18, ease: "back.out(2)" }, "-=0.08")
-      .from("#tape-lp3-bl", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.18, ease: "back.out(2)" }, "-=0.08")
-      .from("#tape-lp3-br", { opacity: 0, scale: 0, transformOrigin: "50% 50%", duration: 0.18, ease: "back.out(2)" }, "-=0.08");
-
-    // Also animate lodging text
-    gsap.from(".lodging-text", { opacity: 0, x: -40, duration: 1, ease: "power2.out" });
-  }
-});
-
-// ─── MOTION CLASS 2: Restaurant photo scale on scroll ──
-gsap.to("#rest-photo img", {
-  scale: 1,
-  ease: "none",
-  scrollTrigger: { trigger: "#restaurant", start: "top bottom", end: "bottom top", scrub: 1.2 }
-});
-gsap.from(".rest-text-side > *", {
-  opacity: 0, y: 30, stagger: 0.15, duration: 0.8, ease: "power2.out",
-  scrollTrigger: { trigger: "#restaurant", start: "top 60%" }
-});
-
-// ─── MOTION CLASS 2: Credentials counter increment ────
-function animateCounter(el, target) {
-  gsap.from({ val: 0 }, {
-    val: target, duration: 1.8, ease: "power2.out",
-    onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }
-  });
+// ── MOTION 1: Hero entrance — Anime.js char stagger ─────
+const line1Text = '慶良間ブルーの';
+const line2Text = '世界へ';
+function buildChars(spanEl, text) {
+  spanEl.innerHTML = text.split('').map(c => `<span class="char">${c}</span>`).join('');
 }
+buildChars(document.querySelector('.hero-title .line-1'), line1Text);
+buildChars(document.querySelector('.hero-title .line-2'), line2Text);
+
+window.addEventListener('load', () => {
+  // Location label
+  anime({ targets: '.hero-location', opacity: [0,1], translateY: [16,0], duration: 700, delay: 200, easing: 'easeOutQuad' });
+  // Title characters stagger
+  anime({
+    targets: '.hero-title .char',
+    opacity: [0, 1], translateY: [28, 0],
+    delay: anime.stagger(60, { start: 400 }),
+    duration: 700, easing: 'easeOutQuart'
+  });
+  // EN line
+  anime({ targets: '.hero-en', opacity: [0,.7], translateY: [16,0], duration: 700, delay: 950, easing: 'easeOutQuad' });
+  // Scroll hint
+  anime({ targets: '.hero-scroll', opacity: [0,1], duration: 600, delay: 1300, easing: 'easeOutQuad' });
+  // Hanko
+  anime({ targets: '.hero-hanko-pos', opacity: [0,1], scale: [.7,1], rotate: [-12,-5], duration: 600, delay: 1100, easing: 'easeOutBack' });
+});
+
+// ── NAV scroll state ─────────────────────────────────────
 ScrollTrigger.create({
-  trigger: "#credentials",
-  start: "top 70%",
-  once: true,
-  onEnter: () => {
-    const el1984 = document.getElementById("cred-1984");
-    const el6    = document.getElementById("cred-6");
-    if (el1984) animateCounter(el1984, 1984);
-    if (el6)    animateCounter(el6, 6);
-    gsap.from(".cred-card", {
-      opacity: 0, y: 40, stagger: 0.15, duration: 0.8, ease: "power2.out"
+  trigger: '#brand', start: 'top 90%',
+  onEnter: () => document.getElementById('nav').classList.add('scrolled'),
+  onLeaveBack: () => document.getElementById('nav').classList.remove('scrolled')
+});
+
+// ── DEPTH GAUGE: show after hero, fill on scroll ─────────
+const dg = document.getElementById('depth-gauge');
+const dgFill = document.getElementById('dg-fill');
+
+ScrollTrigger.create({
+  trigger: '#brand', start: 'top 80%',
+  onEnter: () => dg.classList.add('visible'),
+  onLeaveBack: () => dg.classList.remove('visible')
+});
+
+ScrollTrigger.create({
+  trigger: 'body', start: 'top top', end: 'bottom bottom',
+  scrub: true,
+  onUpdate: self => {
+    dgFill.style.height = (self.progress * 100) + '%';
+    // Highlight depth marks
+    const p = self.progress;
+    document.querySelectorAll('.dg-mark').forEach((m, i) => {
+      const threshold = i / 3;
+      m.classList.toggle('active', p >= threshold && p < threshold + 0.34);
     });
   }
 });
 
-// ─── MOTION CLASS 2: Access map SVG path draw ─────────
-gsap.to(".map-path", {
-  strokeDashoffset: 0, duration: 2.5, ease: "power2.inOut",
-  scrollTrigger: { trigger: "#access", start: "top 65%" }
-});
-gsap.to(".map-ferry-path", {
-  strokeDashoffset: 0, duration: 1.8, ease: "power2.inOut", delay: 0.5,
-  scrollTrigger: { trigger: "#access", start: "top 65%" }
-});
-gsap.from(".access-text", {
-  opacity: 0, x: -40, duration: 1, ease: "power2.out",
-  scrollTrigger: { trigger: "#access", start: "top 70%" }
+// ── MOTION 2: Brand identity — rule draw + underwater bg ─
+gsap.to('#brand-rule', {
+  width: 72, duration: 1.2, ease: 'power2.inOut',
+  scrollTrigger: { trigger: '#brand', start: 'top 70%' }
 });
 
-// ─── MOTION CLASS 3: Contact — Hanko press-stamp ──────
+// Underwater color transition as you scroll through brand section
 ScrollTrigger.create({
-  trigger: "#contact",
-  start: "top 65%",
-  once: true,
-  onEnter: () => {
-    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-    tl.to(".contact-wordmark",  { opacity: 1, y: 0, duration: 0.9 })
-      .to(".contact-subtitle",  { opacity: 1, y: 0, duration: 0.7 }, "-=0.4")
-      .to(".contact-cta",       { opacity: 1, y: 0, duration: 0.7 }, "-=0.3")
-      .to(".contact-info",      { opacity: 1, y: 0, duration: 0.6 }, "-=0.2")
-      .to(".contact-hanko-wrap",{
-          opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)",
-          onComplete: () => {
-            // Ink-bleed: brief scale bounce
-            gsap.to(".contact-hanko-wrap", { scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 });
-          }
-      }, "-=0.1");
+  trigger: '#brand', start: 'top 60%', end: 'bottom 30%',
+  scrub: 1,
+  onUpdate: self => {
+    const p = self.progress;
+    const h = Math.round(p * 48);
+    document.getElementById('brand-water').style.height = h + '%';
   }
 });
 
-// ─── MOTION CLASS 3: Hover micro-interactions ─────────
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("mouseenter", () => gsap.to(link, { letterSpacing: "0.22em", duration: 0.25 }));
-  link.addEventListener("mouseleave", () => gsap.to(link, { letterSpacing: "0.18em", duration: 0.25 }));
+// ── MOTION 2: Diving — annotation lines draw + type stagger
+ScrollTrigger.create({
+  trigger: '#diving', start: 'top 62%', once: true,
+  onEnter: () => {
+    gsap.to('#ann1', { strokeDashoffset: 0, duration: 1.2, ease: 'power2.inOut' });
+    gsap.to('#ann1-label', { opacity: 1, duration: 0.5, delay: 1 });
+    gsap.to('#ann2', { strokeDashoffset: 0, duration: 1.2, delay: 0.4, ease: 'power2.inOut' });
+    gsap.to('#ann2-label', { opacity: 1, duration: 0.5, delay: 1.4 });
+    // Dive type pills stagger
+    anime({
+      targets: '.div-type',
+      opacity: [0, 1], translateX: [-8, 0],
+      delay: anime.stagger(80, { start: 600 }),
+      duration: 500, easing: 'easeOutQuad'
+    });
+  }
 });
-const cta = document.querySelector(".contact-cta");
-if (cta) {
-  cta.addEventListener("mouseenter", () => gsap.to(cta, { paddingLeft: "64px", paddingRight: "64px", duration: 0.3, ease: "power2.out" }));
-  cta.addEventListener("mouseleave", () => gsap.to(cta, { paddingLeft: "56px", paddingRight: "56px", duration: 0.3, ease: "power2.in" }));
-}
+// Parallax on diving image
+gsap.to('#div-img', {
+  yPercent: -8, ease: 'none',
+  scrollTrigger: { trigger: '#diving', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+});
 
-// ─── Video swap: show video once Kling is ready ───────
-const heroVideo = document.getElementById("hero-video");
-if (heroVideo) {
-  heroVideo.addEventListener("canplay", () => {
-    document.querySelector(".hero-fallback").style.opacity = "0";
-    heroVideo.style.display = "block";
-    heroVideo.style.opacity = "1";
+// ── WOW: Lodging tape-corner stagger ─────────────────────
+ScrollTrigger.create({
+  trigger: '#lodging', start: 'top 58%', once: true,
+  onEnter: () => {
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+    tl.to('#lod-main',   { opacity: 1, y: 0, duration: 0.6 })
+      .from('#lt-tl', { opacity: 0, scale: 0, transformOrigin: '50% 50%', duration: 0.22, ease: 'back.out(2.5)' })
+      .from('#lt-tr', { opacity: 0, scale: 0, transformOrigin: '50% 50%', duration: 0.22, ease: 'back.out(2.5)' }, '-=0.1')
+      .from('#lt-bl', { opacity: 0, scale: 0, transformOrigin: '50% 50%', duration: 0.22, ease: 'back.out(2.5)' }, '-=0.1')
+      .from('#lt-br', { opacity: 0, scale: 0, transformOrigin: '50% 50%', duration: 0.22, ease: 'back.out(2.5)' }, '-=0.1')
+      .to('#lod-overlap', { opacity: 1, y: 0, duration: 0.5 }, '+=0.12')
+      .from('#lt2-tl', { opacity: 0, scale: 0, transformOrigin: '50% 50%', duration: 0.2, ease: 'back.out(2.5)' })
+      .from('#lt2-tr', { opacity: 0, scale: 0, transformOrigin: '50% 50%', duration: 0.2, ease: 'back.out(2.5)' }, '-=0.08')
+      .from('#lt2-bl', { opacity: 0, scale: 0, transformOrigin: '50% 50%', duration: 0.2, ease: 'back.out(2.5)' }, '-=0.08')
+      .from('#lt2-br', { opacity: 0, scale: 0, transformOrigin: '50% 50%', duration: 0.2, ease: 'back.out(2.5)' }, '-=0.08');
+  }
+});
+
+// ── MOTION 2: Restaurant photo scale on scroll ───────────
+gsap.to('#rest-img-wrap img', {
+  scale: 1, ease: 'none',
+  scrollTrigger: { trigger: '#restaurant', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
+});
+
+// ── Credentials counter increment ────────────────────────
+function countUp(el, target) {
+  const obj = { val: 0 };
+  gsap.to(obj, { val: target, duration: 1.8, ease: 'power2.out',
+    onUpdate: () => { el.textContent = Math.round(obj.val); } });
+}
+ScrollTrigger.create({
+  trigger: '#credentials', start: 'top 68%', once: true,
+  onEnter: () => {
+    const e1984 = document.getElementById('c-1984');
+    const e6    = document.getElementById('c-6');
+    const e74   = document.getElementById('c-74');
+    if (e1984) countUp(e1984, 1984);
+    if (e6)    countUp(e6, 6);
+    if (e74)   countUp(e74, 74);
+  }
+});
+
+// ── MOTION 2: Access aerial parallax ─────────────────────
+gsap.to('.acc-aerial img', {
+  yPercent: -10, ease: 'none',
+  scrollTrigger: { trigger: '#access', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+});
+
+// ── MOTION 3: Contact — hanko stamp press ────────────────
+ScrollTrigger.create({
+  trigger: '#contact', start: 'top 65%', once: true,
+  onEnter: () => {
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+    tl.to('.contact-wordmark', { opacity: 1, y: 0, duration: 0.9 })
+      .to('.contact-sub',      { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
+      .to('.contact-cta',      { opacity: 1, y: 0, duration: 0.7 }, '-=0.3')
+      .to('.contact-info',     { opacity: 1, y: 0, duration: 0.6 }, '-=0.2')
+      .to('#c-hanko', { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.8)',
+        onComplete: () => gsap.to('#c-hanko', { scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 })
+      }, '-=0.15');
+  }
+});
+
+// ── Universal will-reveal elements ───────────────────────
+gsap.utils.toArray('.will-reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, y: 0, duration: 0.85, ease: 'power2.out',
+    scrollTrigger: { trigger: el, start: 'top 80%' }
   });
-  heroVideo.load();
-}
+});
+gsap.utils.toArray('.will-reveal-left').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out',
+    scrollTrigger: { trigger: el, start: 'top 78%' }
+  });
+});
 
-// ─── Language toggle ──────────────────────────────────
-function toggleLang() {
-  document.body.classList.toggle("en-mode");
+// ── MOTION 3: Hover micro-interactions (Anime.js) ────────
+document.querySelectorAll('.nav-list a').forEach(a => {
+  a.addEventListener('mouseenter', () => anime({ targets: a, letterSpacing: '0.22em', duration: 250, easing: 'easeOutQuad' }));
+  a.addEventListener('mouseleave', () => anime({ targets: a, letterSpacing: '0.18em', duration: 250, easing: 'easeInQuad' }));
+});
+
+// Lod-type hover
+document.querySelectorAll('.lod-type').forEach(el => {
+  el.addEventListener('mouseenter', () => anime({ targets: el, borderColor: 'rgba(30,107,158,0.7)', backgroundColor: 'rgba(30,107,158,0.08)', duration: 200, easing: 'easeOutQuad' }));
+  el.addEventListener('mouseleave', () => anime({ targets: el, borderColor: 'rgba(30,107,158,0.25)', backgroundColor: 'rgba(0,0,0,0)', duration: 200, easing: 'easeInQuad' }));
+});
+
+// CTA magnetic
+const cta = document.querySelector('.contact-cta');
+if (cta) {
+  cta.addEventListener('mousemove', e => {
+    const r = cta.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width  / 2) * 0.22;
+    const y = (e.clientY - r.top  - r.height / 2) * 0.22;
+    anime({ targets: cta, translateX: x, translateY: y, duration: 300, easing: 'easeOutQuad' });
+  });
+  cta.addEventListener('mouseleave', () => {
+    anime({ targets: cta, translateX: 0, translateY: 0, duration: 500, easing: 'easeOutElastic(1, .6)' });
+  });
 }
 </script>
 
