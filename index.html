@@ -179,7 +179,7 @@ img { display: block; max-width: 100%; }
   font-family: var(--font-en); font-size: clamp(.85rem, 1.4vw, 1.1rem);
   color: rgba(242,237,232,.7); letter-spacing: .06em; opacity: 0;
 }
-.hero-hanko-pos { position: absolute; bottom: 76px; left: 64px; z-index: 2; opacity: 0; }
+.hero-hanko-pos { position: absolute; bottom: 76px; right: 64px; z-index: 2; opacity: 0; }
 .hero-scroll { position: absolute; bottom: 28px; right: 64px; z-index: 2; opacity: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .hero-scroll span { font-family: var(--font-en); font-size: 8.5px; letter-spacing: .22em; text-transform: uppercase; color: rgba(242,237,232,.5); }
 .scroll-stem { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--water-surface), transparent); animation: stem 1.8s ease-in-out infinite; }
@@ -386,22 +386,27 @@ img { display: block; max-width: 100%; }
 .cred-data-item { text-align: center; }
 @media(max-width:768px){ .cred-item{ grid-template-columns: 1fr; gap: 8px; } .cred-data-row{ gap: 32px; flex-wrap: wrap; } }
 
-/* ── §8 ACCESS ────────────────────────────────────────── */
-#access { padding: 120px 0; overflow: hidden; background: var(--paper); }
-.acc-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.acc-aerial { position: relative; overflow: hidden; }
-.acc-aerial img { width: 100%; height: 480px; object-fit: cover; object-position: center; }
-.acc-text {}
-.acc-head { font-family: var(--font-jp); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.3; margin: 12px 0 24px; }
-.acc-body { font-size: 15px; line-height: 1.9; margin-bottom: 14px; }
-.acc-body-en { font-family: var(--font-en); font-size: 13px; color: rgba(14,42,63,.6); margin-bottom: 36px; }
-.acc-route { border: 1px solid rgba(14,42,63,.12); padding: 24px; }
-.acc-step { display: flex; gap: 12px; align-items: center; padding: 9px 0; font-size: 14px; }
+/* ── §8 ACCESS — fold-out-map ─────────────────────────── */
+#access { padding: 0; overflow: hidden; background: var(--water-deep); }
+.acc-map-header { padding: 80px 0 40px; }
+.acc-header-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.acc-head { font-family: var(--font-jp); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.3; margin: 12px 0 24px; color: var(--paper); }
+.acc-body { font-size: 15px; line-height: 1.9; color: rgba(242,237,232,.75); margin-bottom: 14px; }
+.acc-body-en { font-family: var(--font-en); font-size: 13px; color: rgba(242,237,232,.5); margin-bottom: 0; }
+.acc-route { border: 1px solid rgba(91,184,212,.18); padding: 24px; background: rgba(255,255,255,.04); }
+.acc-step { display: flex; gap: 12px; align-items: center; padding: 9px 0; font-size: 14px; color: var(--paper); }
 .acc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--water-mid); flex-shrink: 0; }
 .acc-dot.dest { background: var(--coral-warm); }
 .acc-dot.here { background: var(--godray); }
-.acc-step-label { font-family: var(--font-en); font-size: 10px; color: var(--water-surface); letter-spacing: .12em; padding: 6px 0; }
-@media(max-width:768px){ .acc-inner{ grid-template-columns:1fr; gap:48px; } }
+.acc-step-label { font-family: var(--font-en); font-size: 10px; color: var(--water-mid); letter-spacing: .12em; padding: 6px 0; }
+.acc-map-stage { position: relative; padding: 0 0 80px; max-width: 1440px; margin: 0 auto; }
+.acc-map-svg { width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto; }
+.acc-map-svg text { font-family: 'Syne', sans-serif; }
+@media(max-width:768px){
+  .acc-header-grid{ grid-template-columns:1fr; gap:32px; }
+  .acc-map-header{ padding:60px 24px 32px; }
+  .acc-map-stage{ padding:0 24px 60px; }
+}
 
 /* ── §9 CONTACT ───────────────────────────────────────── */
 #contact {
@@ -562,6 +567,8 @@ footer {
           <text class="ann-label" id="ann1-label" x="345" y="158" font-size="10">慶良間海峡 · 水深18m</text>
           <path class="ann-path" id="ann2" d="M 60 320 Q 100 310 140 290" />
           <text class="ann-label" id="ann2-label" x="50" y="335" font-size="10">珊瑚礁エリア</text>
+          <path class="ann-path" id="ann3" d="M 250 430 Q 225 415 200 400" />
+          <text class="ann-label" id="ann3-label" x="155" y="445" font-size="10">透明度 30m+</text>
         </svg>
       </div>
       <div class="div-text will-reveal-left">
@@ -652,6 +659,7 @@ footer {
           <span class="t br" id="lt2-br"></span>
         </div>
         <p style="margin-top:48px;font-size:11px;font-family:var(--font-en);color:var(--shadow-sand);letter-spacing:.1em;text-align:right;" class="will-reveal">渡嘉敷島 — TOKASHIKI ISLAND</p>
+        <p style="margin-top:16px;font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:300;color:rgba(14,42,63,0.38);letter-spacing:.04em;line-height:1.7;text-align:right;" class="will-reveal">ペンション、ログハウス、古民家、グランピング。<br>島の時間だけが、流れている。</p>
       </div>
     </div>
   </div>
@@ -750,28 +758,87 @@ footer {
   </div>
 </section>
 
-<!-- §8 ACCESS -->
+<!-- §8 ACCESS — fold-out-map -->
 <section id="access">
-  <div class="wrap">
-    <div class="acc-inner">
-      <div class="acc-aerial will-reveal">
-        <img src="./assets/aerial-v1.png" alt="Tokashiki Island aerial, Kerama" onerror="this.src='./assets/step1-hero-v1.png'">
-        <p style="margin-top:10px;font-family:var(--font-en);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--shadow-sand);">Tokashiki Island — Kerama, Okinawa</p>
-      </div>
-      <div class="acc-text will-reveal-left">
-        <p class="sec-en">Access</p>
+  <div class="acc-map-header">
+    <div class="acc-header-grid wrap">
+      <div class="will-reveal-left">
+        <p class="sec-en" style="color:var(--water-surface);">Access</p>
         <h2 class="acc-head">辿り着く人だけが<br>見られる青。</h2>
         <p class="acc-body">沖縄本島・泊港から高速船で約35分。渡嘉敷島へのアクセスは、決して難しくはありません。ただ、来ようと決めた人だけが来る場所です。</p>
         <p class="acc-body-en">35 minutes by high-speed ferry from Tomari Port, Naha. Not far — but only those who intend to arrive, do.</p>
-        <div class="acc-route">
-          <div class="acc-step"><span class="acc-dot"></span>那覇 泊港 / Tomari Port, Naha</div>
-          <div class="acc-step-label" style="padding-left:19px;">↓ &nbsp; HIGH-SPEED FERRY · 35 MIN</div>
-          <div class="acc-step"><span class="acc-dot dest"></span>渡嘉敷港 / Tokashiki Port</div>
-          <div class="acc-step-label" style="padding-left:19px;">↓ &nbsp; CAR / TAXI · 10 MIN</div>
-          <div class="acc-step"><span class="acc-dot here"></span>シーフレンド · SeaFriend</div>
-        </div>
+      </div>
+      <div class="acc-route will-reveal">
+        <div class="acc-step"><span class="acc-dot"></span>那覇 泊港 / Tomari Port, Naha</div>
+        <div class="acc-step-label" style="padding-left:19px;">↓ &nbsp; HIGH-SPEED FERRY · 35 MIN</div>
+        <div class="acc-step"><span class="acc-dot dest"></span>渡嘉敷港 / Tokashiki Port</div>
+        <div class="acc-step-label" style="padding-left:19px;">↓ &nbsp; CAR / TAXI · 10 MIN</div>
+        <div class="acc-step"><span class="acc-dot here"></span>シーフレンド · SeaFriend</div>
       </div>
     </div>
+  </div>
+  <!-- SVG illustrated map -->
+  <div class="acc-map-stage">
+    <svg class="acc-map-svg" viewBox="0 0 720 460" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="渡嘉敷島 地図 / Tokashiki Island map">
+      <defs>
+        <pattern id="ocean-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+          <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(91,184,212,0.055)" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <!-- Ocean background grid -->
+      <rect width="720" height="460" fill="url(#ocean-grid)"/>
+      <!-- Island fill (appears after outline draws) -->
+      <path id="island-fill-el" opacity="0"
+            d="M 370,48 C 418,38 465,66 478,112 C 494,164 478,214 455,256 C 432,300 398,330 364,348 C 330,366 294,366 268,344 C 238,318 232,278 234,248 C 236,214 248,184 260,158 C 274,130 284,106 302,84 C 320,60 336,55 370,48 Z"
+            fill="rgba(139,115,85,0.22)"/>
+      <!-- Island outline — animated stroke -->
+      <path id="island-outline"
+            d="M 370,48 C 418,38 465,66 478,112 C 494,164 478,214 455,256 C 432,300 398,330 364,348 C 330,366 294,366 268,344 C 238,318 232,278 234,248 C 236,214 248,184 260,158 C 274,130 284,106 302,84 C 320,60 336,55 370,48 Z"
+            stroke="rgba(201,168,76,0.75)" stroke-width="1.6"
+            stroke-dasharray="1300" stroke-dashoffset="1300"/>
+      <!-- Interior topographic hatch lines -->
+      <path d="M 298,138 Q 370,128 448,140" stroke="rgba(201,168,76,0.1)" stroke-width="0.7" stroke-dasharray="3,5"/>
+      <path d="M 280,188 Q 362,176 474,190" stroke="rgba(201,168,76,0.08)" stroke-width="0.7" stroke-dasharray="3,5"/>
+      <path d="M 270,240 Q 356,228 460,242" stroke="rgba(201,168,76,0.08)" stroke-width="0.7" stroke-dasharray="3,5"/>
+      <path d="M 268,295 Q 348,282 430,296" stroke="rgba(201,168,76,0.07)" stroke-width="0.6" stroke-dasharray="3,5"/>
+      <!-- Ferry route — dashed animated -->
+      <path id="ferry-route-path"
+            d="M 52,110 Q 175,80 318,148"
+            stroke="rgba(30,107,158,0.85)" stroke-width="1.1"
+            stroke-dasharray="7,5" stroke-dashoffset="340" pathLength="340"/>
+      <!-- Ferry time label -->
+      <text id="ferry-time-label" x="148" y="90" font-size="9" fill="rgba(30,107,158,0.75)"
+            letter-spacing="0.12em" opacity="0" text-anchor="middle">高速船 35分 / FERRY 35 MIN</text>
+      <!-- Ferry origin -->
+      <text id="ferry-origin-label" x="50" y="99" font-size="9" fill="rgba(91,184,212,0.55)"
+            letter-spacing="0.08em" opacity="0">那覇 泊港</text>
+      <!-- Ferry arrow -->
+      <polygon id="ferry-arrow" points="318,148 308,142 312,154" fill="rgba(30,107,158,0.85)" opacity="0"/>
+      <!-- Tokashiki Port (NE coast, ~top-right of island) -->
+      <circle id="port-ring"  cx="376" cy="134" r="7"  fill="none" stroke="var(--coral-warm,#C9734A)" stroke-width="1.4" opacity="0"/>
+      <circle id="port-dot"   cx="376" cy="134" r="2.5" fill="var(--coral-warm,#C9734A)" opacity="0"/>
+      <text   id="port-label" x="388"  y="138" font-size="9" fill="rgba(201,115,74,0.9)"  letter-spacing="0.06em" opacity="0">渡嘉敷港</text>
+      <!-- Aharen Beach (SW of island) -->
+      <circle id="aharen-ring"  cx="255" cy="308" r="6"  fill="none" stroke="rgba(91,184,212,0.8)" stroke-width="1.2" opacity="0"/>
+      <circle id="aharen-dot"   cx="255" cy="308" r="2" fill="rgba(91,184,212,0.8)" opacity="0"/>
+      <text   id="aharen-label" x="265"  y="312" font-size="9" fill="rgba(91,184,212,0.75)" letter-spacing="0.06em" opacity="0">阿波連浜</text>
+      <!-- SeaFriend HQ (near Aharen) -->
+      <circle id="sf-ring"  cx="258" cy="325" r="8"  fill="rgba(201,168,76,0.12)" stroke="rgba(201,168,76,0.9)" stroke-width="1.5" opacity="0"/>
+      <circle id="sf-dot"   cx="258" cy="325" r="3"  fill="rgba(201,168,76,0.9)"  opacity="0"/>
+      <text   id="sf-label" x="272"   y="330" font-size="9" fill="rgba(201,168,76,0.9)" letter-spacing="0.06em" opacity="0">シーフレンド</text>
+      <!-- Kerama Channel (east offshore, dive spot) -->
+      <circle id="ds-kerama" cx="590" cy="212" r="6" fill="none" stroke="rgba(91,184,212,0.6)" stroke-width="1" stroke-dasharray="3,2" opacity="0"/>
+      <line   id="ds-kerama-line" x1="478" y1="212" x2="582" y2="212" stroke="rgba(91,184,212,0.3)" stroke-width="0.7" stroke-dasharray="2,3" opacity="0"/>
+      <text   id="ds-kerama-label" x="598" y="209" font-size="8.5" fill="rgba(91,184,212,0.7)" letter-spacing="0.07em" opacity="0">慶良間海峡</text>
+      <text   id="ds-kerama-depth" x="598" y="222" font-size="7.5" fill="rgba(91,184,212,0.45)" letter-spacing="0.06em" opacity="0">水深 18–35m</text>
+      <!-- North compass -->
+      <text   id="north-n"     x="52" y="368" font-size="11" fill="rgba(91,184,212,0.35)" text-anchor="middle" font-weight="700" letter-spacing="0.1em" opacity="0">N</text>
+      <line   id="north-line"  x1="52" y1="372" x2="52" y2="395" stroke="rgba(91,184,212,0.35)" stroke-width="0.9" opacity="0"/>
+      <polygon id="north-arrow" points="52,362 49,372 52,368 55,372" fill="rgba(91,184,212,0.35)" opacity="0"/>
+      <!-- Island name marginalia -->
+      <text id="map-island-name-jp" x="380" y="416" font-size="10" fill="rgba(242,237,232,0.32)" letter-spacing="0.12em" text-anchor="middle" opacity="0">渡嘉敷島 · TOKASHIKI ISLAND</text>
+      <text id="map-island-name-en" x="380" y="430" font-size="8"  fill="rgba(242,237,232,0.2)"  letter-spacing="0.18em" text-anchor="middle" opacity="0">慶良間諸島 · KERAMA ISLANDS · OKINAWA</text>
+    </svg>
   </div>
 </section>
 
@@ -908,6 +975,8 @@ ScrollTrigger.create({
     gsap.to('#ann1-label', { opacity: 1, duration: 0.5, delay: 1 });
     gsap.to('#ann2', { strokeDashoffset: 0, duration: 1.2, delay: 0.4, ease: 'power2.inOut' });
     gsap.to('#ann2-label', { opacity: 1, duration: 0.5, delay: 1.4 });
+    gsap.to('#ann3', { strokeDashoffset: 0, duration: 1.1, delay: 0.7, ease: 'power2.inOut' });
+    gsap.to('#ann3-label', { opacity: 1, duration: 0.5, delay: 1.7 });
     // Dive type pills stagger
     anime({
       targets: '.div-type',
@@ -965,10 +1034,33 @@ ScrollTrigger.create({
   }
 });
 
-// ── MOTION 2: Access aerial parallax ─────────────────────
-gsap.to('.acc-aerial img', {
-  yPercent: -10, ease: 'none',
-  scrollTrigger: { trigger: '#access', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+// ── MOTION: Access fold-out-map SVG draw ─────────────────
+ScrollTrigger.create({
+  trigger: '#access', start: 'top 72%', once: true,
+  onEnter: () => {
+    const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+    // Island fill fades in first
+    tl.to('#island-fill-el', { opacity: 1, duration: 0.4 })
+    // Island outline draws (stroke-dashoffset 1300 → 0)
+      .to('#island-outline', { strokeDashoffset: 0, duration: 2.2, ease: 'power2.inOut' }, '-=0.2')
+    // Ferry route draws
+      .to('#ferry-route-path', { strokeDashoffset: 0, duration: 1.4, ease: 'power2.inOut' }, '-=1.4')
+    // Ferry labels appear
+      .to(['#ferry-origin-label', '#ferry-time-label', '#ferry-arrow'], { opacity: 1, duration: 0.5 }, '-=0.3')
+    // Compass appears
+      .to(['#north-n', '#north-line', '#north-arrow'], { opacity: 1, duration: 0.4 }, '-=0.1')
+    // Port marker
+      .to(['#port-ring', '#port-dot', '#port-label'], { opacity: 1, duration: 0.4, stagger: 0.1 })
+    // Aharen Beach
+      .to(['#aharen-ring', '#aharen-dot', '#aharen-label'], { opacity: 1, duration: 0.4, stagger: 0.08 }, '-=0.2')
+    // SeaFriend HQ
+      .to(['#sf-ring', '#sf-dot', '#sf-label'], { opacity: 1, duration: 0.4, stagger: 0.08 }, '-=0.15')
+    // Kerama Channel dive spot
+      .to(['#ds-kerama-line', '#ds-kerama'], { opacity: 1, duration: 0.5 }, '-=0.1')
+      .to(['#ds-kerama-label', '#ds-kerama-depth'], { opacity: 1, duration: 0.4, stagger: 0.1 }, '-=0.1')
+    // Island name marginalia
+      .to(['#map-island-name-jp', '#map-island-name-en'], { opacity: 1, duration: 0.5, stagger: 0.15 }, '-=0.2');
+  }
 });
 
 // ── MOTION 3: Contact — hanko stamp press ────────────────
@@ -1016,19 +1108,15 @@ document.querySelectorAll('.lod-type').forEach(el => {
 const galleryTrack = document.getElementById('gallery-track');
 if (galleryTrack) {
   const items = galleryTrack.querySelectorAll('.gallery-item');
-  // Total width to scroll = sum of items minus viewport
-  const totalMove = Array.from(items).reduce((acc, el) => {
-    return acc + el.offsetWidth + parseInt(getComputedStyle(el).marginLeft) + parseInt(getComputedStyle(el).marginRight);
-  }, 0) - window.innerWidth + 160;
 
   const galleryST = gsap.to(galleryTrack, {
-    x: -totalMove,
+    x: () => -(galleryTrack.scrollWidth - window.innerWidth + 80),
     ease: 'none',
     scrollTrigger: {
       trigger: '#gallery',
       pin: true,
       start: 'top top',
-      end: () => '+=' + (totalMove + window.innerWidth * 0.5),
+      end: () => '+=' + (galleryTrack.scrollWidth - window.innerWidth + 80 + window.innerWidth * 0.4),
       scrub: 1.2,
       invalidateOnRefresh: true
     }
